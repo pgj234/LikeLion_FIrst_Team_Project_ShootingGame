@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class GunItem : MonoBehaviour
 {
@@ -17,18 +17,18 @@ public class GunItem : MonoBehaviour
         text.text = hp.ToString();
         rb2d.linearVelocityY = -velocity;
 
-        Destroy(gameObject, 20);//ÀÓ½ÃÀÛ¾÷: 20ÃÊÈÄ »èÁ¦.
+        Destroy(gameObject, 20);//ì„ì‹œì‘ì—…: 20ì´ˆí›„ ì‚­ì œ.
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (true)//TODO. ÃÑ¾Ë ÆÇ´ÜÇÊ¿ä.
+        if (true)//TODO. ì´ì•Œ íŒë‹¨í•„ìš”.
         {
             hp--;
             UpdateText();
             if (hp <= 0)
             {
-                //TODO. ÇÃ·¹ÀÌ¾î ÃÑ±â·ù ¾÷±×·¹ÀÌµå
+                //TODO. í”Œë ˆì´ì–´ ì´ê¸°ë¥˜ ì—…ê·¸ë ˆì´ë“œ
                 Destroy(gameObject);
             }
         }
