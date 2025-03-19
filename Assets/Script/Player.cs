@@ -8,20 +8,20 @@ public class Player : MonoBehaviour
     Animator moveAni;
 
     public GameObject bullet;
-    //public Transform pos;
+    public Transform pos;
 
     //public GameObject powerUpItem;
 
     void Start()
     {
         moveAni = GetComponent<Animator>();
+        InvokeRepeating("Shoot", 2f, 2f);
     }
 
     
     void Update()
     {
         float distanceX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-
         if (Input.GetAxis("Horizontal") <= -0.5f)
             moveAni.SetBool("left", true);
         else
@@ -33,12 +33,14 @@ public class Player : MonoBehaviour
             moveAni.SetBool("right", false);
 
         transform.Translate(distanceX, 0, 0);
-    }
-
-    public void Move()
-    {
         
 
-      
+           
+    }
+
+    
+    void Shoot()
+    {
+        Instantiate(bullet, pos.position, Quaternion.identity);
     }
 }

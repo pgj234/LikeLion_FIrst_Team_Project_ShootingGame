@@ -1,24 +1,19 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class PlayerLauncher : MonoBehaviour
 {
-
-    public Bullet bullet;
-
-
-
-    public float speed = 4.0f;
+    public float speed = 3.0f;
     //public int attack;
-
+    
     void Start()
     {
-
+            
     }
 
-
+    
     void Update()
     {
-        transform.Translate(Vector2.up*speed*Time.deltaTime);
+        transform.Translate(Vector2.up * speed * Time.deltaTime);    
     }
 
     private void OnBecameInvisible()
@@ -29,7 +24,10 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Destroy(collision.gameObject);
-
+        
         Destroy(gameObject);
     }
+
+
+
 }
