@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-	private static SpawnManager _instance; // 스폰 매니저 객체
+	public static SpawnManager _instance; // 스폰 매니저 객체
 
 	[SerializeField] float delay; // 몬스터 생성 딜레이
 	[SerializeField] float spawnMinX; // 몬스터 생성 최소 x좌표
@@ -56,7 +56,5 @@ public class SpawnManager : MonoBehaviour
 		{
 			enemyIndex = 3;
 		}
-
-
 	}
 }
