@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         moveAni = GetComponent<Animator>();
-        InvokeRepeating("Shoot", 2f, 2f);
+        InvokeRepeating("Shoot", 1f, 1f);
     }
 
     

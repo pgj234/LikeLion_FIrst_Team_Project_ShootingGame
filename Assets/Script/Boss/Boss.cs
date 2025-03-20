@@ -12,8 +12,12 @@ public class Boss : MonoBehaviour
     public Transform pos1;
     public Transform pos2;
 
+    //보스 체력
+    public int bossHp=3;
 
-   
+    //총알
+    public GameObject PlayerBullet;
+
     void Start()
     {
         StartCoroutine(BossBullet());
@@ -60,6 +64,16 @@ public class Boss : MonoBehaviour
             weightangle += 1;
             //3초마다 미사일 발사
             yield return new WaitForSeconds(attackRATE);
+        }
+    }
+
+    public void Damage(int attack)
+    {
+        bossHp -= attack;
+
+        if(bossHp<=0)
+        {
+            Destroy(gameObject);
         }
     }
 

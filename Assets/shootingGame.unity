@@ -349,7 +349,7 @@ Transform:
   m_GameObject: {fileID: 895465102}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -436,7 +436,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!1001 &1466058559
+--- !u!1001 &1649934800
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -444,6 +444,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 511776815874374513, guid: 0366fead89d66a046b780799dd6572b2, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318823851196453129, guid: 0366fead89d66a046b780799dd6572b2, type: 3}
+      propertyPath: PlayerBullet
+      value: 
+      objectReference: {fileID: 2838656603351288438, guid: 8cb3293049dd5514bbc13b17131961c5, type: 3}
     - target: {fileID: 2988666612461701276, guid: 0366fead89d66a046b780799dd6572b2, type: 3}
       propertyPath: m_Name
       value: Boss 1
@@ -499,4 +507,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 40515787}
   - {fileID: 895465105}
-  - {fileID: 1466058559}
+  - {fileID: 1649934800}

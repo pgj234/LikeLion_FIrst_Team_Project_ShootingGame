@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 7033043677890640301}
   speed: 3
+  attack: 1
 --- !u!60 &7882124391615272793
 PolygonCollider2D:
   m_ObjectHideFlags: 0
