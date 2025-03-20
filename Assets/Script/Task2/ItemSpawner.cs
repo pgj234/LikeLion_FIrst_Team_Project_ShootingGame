@@ -3,18 +3,16 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-    public float spawnMinX;
-    public float spawnMaxX;
 
     public GameObject gunPrefab;//gun++
     public GameObject peoplePrefab;//people++
-
-    private float spawnY;
+    public Transform[] points;
+    public float spawnFreq = 1f;
+    private int pointIndex = 0;
 
     private void Start()
     {
         StartCoroutine(SpawnCo());
-        spawnY = transform.position.y;
     }
 
 
@@ -22,24 +20,44 @@ public class ItemSpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
-            SpawnGun();
+            yield return new WaitForSeconds(spawnFreq);
 
-            //yield return new WaitForSeconds(1f);
-            //SpawnPeople();
+            switch (Random.Range(0, 3))
+            {
+                case 0:
+                    Debug.Log("좌: 총 장애물, 우:빈공간");
+                    AddGun(); AddEmpty();
+                    break;
+                case 1:
+                    Debug.Log("좌: 총 장애물, 우:총 장애물");
+                    AddGun(); AddGun();
+                    break;
+                case 2:
+                    Debug.Log("좌: 빈공간, 우:총 장애물");
+                    AddEmpty(); AddGun();
+                    break;
+            }
         }
     }
-
-    void SpawnGun()
+    void AddGun()
     {
         GameObject go = Instantiate(gunPrefab);
-        go.transform.position = new Vector3(Random.Range(spawnMinX, spawnMaxX), spawnY, 0);
+        go.transform.position = points[pointIndex].position;
         go.GetComponent<GunItem>().Init(3, 1);
-    }
 
-    void SpawnPeople()
+        NextPoint();
+    }
+    void AddEmpty()
     {
-        GameObject go = Instantiate(gunPrefab);
-        go.transform.position = new Vector3(Random.Range(spawnMinX, spawnMaxX), spawnY, 0);
+        NextPoint();
+    }
+    void NextPoint()
+    {
+        pointIndex++;
+        pointIndex %= points.Length;
+    }
+    void AddPeople()
+    {
+        //
     }
 }
