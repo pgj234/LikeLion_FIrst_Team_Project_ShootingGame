@@ -22,8 +22,10 @@ public class GunItem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (true)//TODO. 총알 판단필요.
+        if (collision.CompareTag("PBullet"))//플레이어 총알이면,
         {
+            Destroy(collision.gameObject);//총알삭제.
+
             hp--;
             UpdateText();
             if (hp <= 0)
