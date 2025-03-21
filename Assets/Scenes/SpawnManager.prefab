@@ -50,5 +50,6 @@ MonoBehaviour:
   - {fileID: 4547780060919400791, guid: 58cf35061fa827b42b43b0ee3200a11c, type: 3}
   - {fileID: 4547780060919400791, guid: 10a6bcfa989c1de45b2a6f7afd3a2809, type: 3}
   - {fileID: 4547780060919400791, guid: 697823f7d6acbbf499a157b03458a4a0, type: 3}
+  - {fileID: 2988666612461701276, guid: 0366fead89d66a046b780799dd6572b2, type: 3}
   enemyIndex: 0
   enemyCount: 0

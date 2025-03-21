@@ -4,7 +4,7 @@ public class Monster_1 : MonoBehaviour
 {
 	//[SerializeField] float speedMin;
 	//[SerializeField] float speedMax;
-	[SerializeField] float HP;
+	//[SerializeField] float HP;
 	[SerializeField] float currentSpeed;
 	[SerializeField] GameObject bullet;
 
@@ -25,14 +25,11 @@ public class Monster_1 : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.CompareTag( "Bullet" ))
+		if (collision.CompareTag( "PBullet" ))
 		{
-			// 총알 데미지 메서드
-			if (HP <= 0)
-			{
-				Destroy( this.gameObject );
-				SpawnManager._instance.enemyCount++;
-			}
+
+			Destroy( this.gameObject );
+			SpawnManager._instance.enemyCount++;
 		}
 	}
 }
