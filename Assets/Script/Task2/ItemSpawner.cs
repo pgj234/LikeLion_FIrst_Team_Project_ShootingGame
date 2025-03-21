@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
@@ -43,7 +44,7 @@ public class ItemSpawner : MonoBehaviour
     {
         GameObject go = Instantiate(gunPrefab);
         go.transform.position = points[pointIndex].position;
-        go.GetComponent<GunItem>().Init(3, 1);
+        go.GetComponent<GunItem>().Init(3);
 
         NextPoint();
     }

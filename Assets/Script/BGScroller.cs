@@ -1,12 +1,23 @@
+using System;
 using UnityEngine;
 
 public class BGScroller : MonoBehaviour
 {
-    public float speed = 3f;
     public GameObject[] tileGroupA;
     public GameObject[] tileGroupB;
     public float gapY = 10f;
     private bool isMovingGroupA;
+    public static event Action<float> onChangeSpeed;
+    private static float _curSpeed;
+    public static float curSpeed
+    {
+        get => _curSpeed;
+        set
+        {
+            _curSpeed = value;
+            onChangeSpeed?.Invoke(_curSpeed);
+        }
+    }
 
     private void Update()
     {
@@ -21,7 +32,7 @@ public class BGScroller : MonoBehaviour
 
         foreach (GameObject tile in movingTiles)
         {
-            tile.transform.Translate(Vector2.down * speed * Time.deltaTime);
+            tile.transform.Translate(Vector2.down * _curSpeed * Time.deltaTime);
         }
 
         for (int i = 0; i < followingTiles.Length; i++)

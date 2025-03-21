@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GunItem : MonoBehaviour
@@ -13,14 +15,27 @@ public class GunItem : MonoBehaviour
 
     private int hp = 0;
     private Coroutine colorCo = null;
+    private void Start()
+    {
+        BGScroller.onChangeSpeed += ChangeSpeed;
+    }
+    private void OnDestroy()
+    {
+        BGScroller.onChangeSpeed -= ChangeSpeed;
+    }
 
-    public void Init(int hp, float velocity)
+    private void ChangeSpeed(float speed)
+    {
+        rb2d.linearVelocityY = -speed;
+    }
+
+    public void Init(int hp)
     {
         this.hp = hp;
         InitSprite();
         InitText();
         UpdateText();
-        rb2d.linearVelocityY = -velocity;
+        rb2d.linearVelocityY = -BGScroller.curSpeed;
 
         Destroy(gameObject, 20);//임시작업: 20초후 삭제.
     }
