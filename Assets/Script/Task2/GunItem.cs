@@ -44,8 +44,6 @@ public class GunItem : MonoBehaviour
     {
         if (collision.CompareTag("PBullet"))//플레이어 총알이면,
         {
-            Destroy(collision.gameObject);//총알삭제.
-
             hp--;
             UpdateText();
             ShowHitEffect();
