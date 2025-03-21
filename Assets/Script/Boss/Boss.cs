@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
@@ -11,9 +14,28 @@ public class Boss : MonoBehaviour
     public GameObject bossbullet2;
     public Transform pos1;
     public Transform pos2;
+    [SerializeField] private Slider bhpBar;
 
+    private int BHP;
 
-   
+    public int HP
+    {
+        get => BHP;
+        //0이하로 떨어지지 않음
+        private set => BHP = Math.Clamp(value, 0, BHP);
+    }
+
+    private void Awake()
+    {
+        BHP = 4000;
+        SetMaxHP(BHP);
+    }
+    public void SetMaxHP(int health)
+    {
+        bhpBar.maxValue = health;
+        bhpBar.value = health;
+    }
+
     void Start()
     {
         StartCoroutine(BossBullet());
@@ -66,5 +88,20 @@ public class Boss : MonoBehaviour
     private void Update()
     {
 
+    }
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
+    public void Damage(int ATK)
+    {
+        int getDamage =  HP -= ATK;
+        HP = getDamage;
+        bhpBar.value = HP;
+        if(HP <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
