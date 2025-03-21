@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Boss
+  - EBullet
   - Monster
+  - PBullet
   layers:
   - Default
   - TransparentFX
@@ -41,18 +44,6 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: BackGround
-    uniqueID: 2865425135
-    locked: 0
-  - name: Bullet
-    uniqueID: 1645481651
-    locked: 0
-  - name: Monster
-    uniqueID: 2928179335
-    locked: 0
-  - name: Player
-    uniqueID: 186815387
     locked: 0
   m_RenderingLayers:
   - Default

@@ -16,26 +16,10 @@ public class Boss : MonoBehaviour
     public Transform pos2;
     [SerializeField] private Slider bhpBar;
 
-    private int BHP;
+    //보스 체력
+    public int bossHp=3;
 
-    public int HP
-    {
-        get => BHP;
-        //0이하로 떨어지지 않음
-        private set => BHP = Math.Clamp(value, 0, BHP);
-    }
-
-    private void Awake()
-    {
-        BHP = 4000;
-        SetMaxHP(BHP);
-    }
-    public void SetMaxHP(int health)
-    {
-        bhpBar.maxValue = health;
-        bhpBar.value = health;
-    }
-
+   
     void Start()
     {
         StartCoroutine(BossBullet());
@@ -82,6 +66,16 @@ public class Boss : MonoBehaviour
             weightangle += 1;
             //3초마다 미사일 발사
             yield return new WaitForSeconds(attackRATE);
+        }
+    }
+
+    public void Damage(int attack)
+    {
+        bossHp -= attack;
+
+        if(bossHp<=0)
+        {
+            Destroy(gameObject);
         }
     }
 

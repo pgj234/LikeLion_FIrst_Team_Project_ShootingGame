@@ -4,11 +4,11 @@ public class Bullet : MonoBehaviour
 {
 
     public Bullet bullet;
-
+    public Boss boss;
 
 
     public float speed = 4.0f;
-    //public int attack;
+    public int attack=2;
 
     void Start()
     {
@@ -28,8 +28,12 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Destroy(collision.gameObject);
+        if (collision.CompareTag("Boss"))
+        {
+            collision.gameObject.GetComponent<Boss>().Damage(attack);
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
+        
     }
 }
