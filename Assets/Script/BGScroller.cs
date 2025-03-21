@@ -19,6 +19,11 @@ public class BGScroller : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        BGScroller.curSpeed = 3f;
+    }
+
     private void Update()
     {
         MoveBackground();
