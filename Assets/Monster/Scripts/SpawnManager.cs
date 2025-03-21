@@ -18,6 +18,7 @@ public class SpawnManager : MonoBehaviour
 
 	float delay; // 몬스터 생성 딜레이
 
+
 	void Awake() // 간단한 싱글톤 패턴
 	{
 		if (_instance == null)
@@ -34,14 +35,6 @@ public class SpawnManager : MonoBehaviour
 		StartCoroutine( CreateMonster() );
 	}
 
-	void Update()
-	{
-		if (enemyIndex == 3)
-		{
-			StopCoroutine( CreateMonster() );
-		}
-	}
-
 	IEnumerator CreateMonster() // 몬스터 생성 코루틴
 	{
 		while (true)
@@ -49,26 +42,31 @@ public class SpawnManager : MonoBehaviour
 			delay = Mathf.Max( minDelay, maxDelay * 0.97f );
 			float randomX = Random.Range( spawnMinX, spawnMaxX );
 			yield return new WaitForSeconds( delay );
-			GameObject mon = Instantiate( enemies[enemyIndex], new Vector2( randomX, transform.position.y ), Quaternion.identity );
-			Destroy( mon, 4f );
-			if (enemyCount >= 10 && enemyCount < 20)
+			if (3 > enemyIndex)
+			{
+				GameObject mon = Instantiate( enemies[enemyIndex], new Vector2( randomX, transform.position.y ), Quaternion.identity );
+				Destroy( mon, 4f );
+			}
+
+			if (enemyCount >= 1 && enemyCount < 2)
 			{
 				enemyIndex = 1;
 			}
-			else if (enemyCount >= 20 && enemyCount < 30)
+			else if (enemyCount >= 2 && enemyCount < 3)
 			{
 				enemyIndex = 2;
 			}
-			else if (enemyCount >= 30)
+			else if (enemyCount >= 3 && enemyIndex != 3)
 			{
 				enemyIndex = 3;
 				bossWarning.SetActive( true );
-				yield return new WaitForSeconds( 3f );
+				yield return new WaitForSeconds( 3.5f );
 				bossWarning.SetActive( false );
+
+				Instantiate( enemies[enemyIndex], new Vector2( randomX, transform.position.y ), Quaternion.identity );
+				break;
 			}
 		}
-
-
 	}
 
 }
