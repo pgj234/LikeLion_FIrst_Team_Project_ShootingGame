@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         
+        
 
         float distanceX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         if (Input.GetAxis("Horizontal") <= -2f)
@@ -38,11 +39,18 @@ public class Player : MonoBehaviour
 
         transform.Translate(distanceX, 0, 0);
 
-        Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
-        viewPos.x = Mathf.Clamp01(viewPos.x);
-        viewPos.y = Mathf.Clamp01(viewPos.y);
-        Vector3 worldPos = Camera.main.ViewportToWorldPoint(viewPos);
-        transform.position = worldPos;
+
+        //Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
+        //viewPos.x = Mathf.Clamp01(viewPos.x);
+        //viewPos.y = Mathf.Clamp01(viewPos.y);
+        //Vector3 worldPos = Camera.main.ViewportToWorldPoint(viewPos);
+        //transform.position = worldPos;
+
+        Vector3 groundPos;
+        groundPos = transform.position;
+        groundPos.x = Mathf.Clamp(groundPos.x, -2, 2);
+        transform.position = groundPos;
+
     }
 
     
