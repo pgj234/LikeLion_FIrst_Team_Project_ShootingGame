@@ -4,12 +4,9 @@
 TagManager:
   serializedVersion: 3
   tags:
-
   - Boss
   - EBullet
-
   - Monster
-4a4693a704a6ebc4084f01c70a3edb895c015eb
   layers:
   - Default
   - TransparentFX
@@ -17,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Grass
   - 
   - 
   - 
@@ -47,20 +44,5 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-
-
-  - name: BackGround
-    uniqueID: 2865425135
-    locked: 0
-  - name: Bullet
-    uniqueID: 1645481651
-    locked: 0
-  - name: Monster
-    uniqueID: 2928179335
-    locked: 0
-  - name: Player
-    uniqueID: 186815387
-    locked: 0
- 24a4693a704a6ebc4084f01c70a3edb895c015eb
   m_RenderingLayers:
   - Default
