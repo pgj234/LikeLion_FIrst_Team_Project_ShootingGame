@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
     public float speed = 5f;
     public int attack;
 
-    //Animator moveAni;
+    Animator moveAni;
 
       
 
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-       // moveAni = GetComponent<Animator>();
+        moveAni = GetComponent<Animator>();
         InvokeRepeating("Shoot", 1f, 1f);
     }
 
@@ -26,15 +26,15 @@ public class Player : MonoBehaviour
         
 
         float distanceX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        //if (Input.GetAxis("Horizontal") <= -0.5f)
-        //    moveAni.SetBool("left", true);
-        //else
-        //    moveAni.SetBool("left", false);
+        if (Input.GetAxis("Horizontal") <= -2f)
+            moveAni.SetBool("left", true);
+        else
+            moveAni.SetBool("left", false);
 
-        //if (Input.GetAxis("Horizontal") >= 0.5f)
-        //    moveAni.SetBool("right", true);
-        //else
-        //    moveAni.SetBool("right", false);
+        if (Input.GetAxis("Horizontal") >= 2f)
+            moveAni.SetBool("right", true);
+        else
+            moveAni.SetBool("right", false);
 
         transform.Translate(distanceX, 0, 0);
 
