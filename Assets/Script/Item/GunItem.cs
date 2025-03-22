@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,45 +14,51 @@ public class GunItem : MonoBehaviour
     [SerializeField] private Color attackedColor = Color.red;
 
     private int hp = 0;
-    private Coroutine colorCo = null;
+    private float curSpeed = 0f;
+    
     private void Start()
     {
-        BGScroller.onChangeSpeed += ChangeSpeed;
+        EventManager.instance.stageEvents.onChangeStage += ChangeStage;
     }
+
     private void OnDestroy()
     {
-        BGScroller.onChangeSpeed -= ChangeSpeed;
+        EventManager.instance.stageEvents.onChangeStage -= ChangeStage;
     }
 
-    private void ChangeSpeed(float speed)
-    {
-        rb2d.linearVelocityY = -speed;
-    }
 
-    public void Init(int hp)
+    public void Init()
     {
-        this.hp = hp;
+        this.hp = StageManager.instance.GetFenceHP();
+        this.curSpeed = StageManager.instance.GetCurSpeed();
         InitSprite();
         InitText();
         UpdateText();
-        rb2d.linearVelocityY = -BGScroller.curSpeed;
-
         Destroy(gameObject, 20);//임시작업: 20초후 삭제.
     }
 
+    private void Update()
+    {
+        //rigidbody velocity에서, translate로 변경.
+        transform.Translate(Vector2.down * curSpeed * Time.deltaTime);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PBullet"))//플레이어 총알이면,
+        if (collision.CompareTag("PBullet"))
         {
             hp--;
             UpdateText();
             ShowHitEffect();
             if (hp <= 0)
             {
-                //TODO. 플레이어 총기류 업그레이드
+                EventManager.instance.playerEvents.WeaponUpgrade();
                 Destroy(gameObject);
             }
         }
+    }
+    private void ChangeStage(int stage)
+    {
+        Destroy(gameObject);
     }
     void InitSprite()
     {
@@ -69,6 +75,7 @@ public class GunItem : MonoBehaviour
         render.sortingLayerName = "Default";
         render.sortingOrder = sortingOrder;
     }
+    private Coroutine colorCo = null;
 
     IEnumerator ChangeCo()
     {

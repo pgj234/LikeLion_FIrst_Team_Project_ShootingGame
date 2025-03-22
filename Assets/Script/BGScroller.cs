@@ -7,25 +7,27 @@ public class BGScroller : MonoBehaviour
     public GameObject[] tileGroupB;
     public float gapY = 10f;
     private bool isMovingGroupA;
-    public static event Action<float> onChangeSpeed;
-    private static float _curSpeed;
-    public static float curSpeed
+
+
+    private float curSpeed = 0;
+    void Start()
     {
-        get => _curSpeed;
-        set
-        {
-            _curSpeed = value;
-            onChangeSpeed?.Invoke(_curSpeed);
-        }
+        EventManager.instance.stageEvents.onChangeStage += ChangeStage;
+        EventManager.instance.playerEvents.onPlayerDead += PlayerDead;
     }
 
-    private void Start()
+    void OnDestroy()
     {
-        BGScroller.curSpeed = 3f;
+        EventManager.instance.stageEvents.onChangeStage -= ChangeStage;
+        EventManager.instance.playerEvents.onPlayerDead -= PlayerDead;
     }
+
+    private bool isPlayerDead = false;
+
 
     private void Update()
     {
+        if (isPlayerDead) return;
         MoveBackground();
         CheckSwapGroup();
     }
@@ -37,7 +39,7 @@ public class BGScroller : MonoBehaviour
 
         foreach (GameObject tile in movingTiles)
         {
-            tile.transform.Translate(Vector2.down * _curSpeed * Time.deltaTime);
+            tile.transform.Translate(Vector2.down * curSpeed * Time.deltaTime);
         }
 
         for (int i = 0; i < followingTiles.Length; i++)
@@ -54,4 +56,16 @@ public class BGScroller : MonoBehaviour
             isMovingGroupA = !isMovingGroupA;
         }
     }
+    private void ChangeStage(int num)
+    {
+        curSpeed = StageManager.instance.GetCurSpeed();
+    }
+
+
+    private void PlayerDead()
+    {
+        isPlayerDead = true;
+    }
+
+
 }

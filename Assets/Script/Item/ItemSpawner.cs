@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,28 +13,44 @@ public class ItemSpawner : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnCo());
+        EventManager.instance.stageEvents.onChangeStage += ChangeStage;
+
+    }
+    private void OnDestroy()
+    {
+        EventManager.instance.stageEvents.onChangeStage -= ChangeStage;
     }
 
 
+    Coroutine co = null;
+    private void ChangeStage(int stage)
+    {
+        if (co != null)
+        {
+            StopCoroutine(co);
+        }
+
+
+        fenceCount = StageManager.instance.GetFenceCount();
+        if (fenceCount > 0)
+        {
+            co = StartCoroutine(SpawnCo());
+        }
+    }
+
+    int fenceCount;
     IEnumerator SpawnCo()
     {
-        while (true)
+        while (fenceCount-- > 0)
         {
             yield return new WaitForSeconds(spawnFreq);
 
-            switch (Random.Range(0, 3))
+            switch (Random.Range(0, 2))
             {
                 case 0:
-                    Debug.Log("좌: 총 장애물, 우:빈공간");
                     AddGun(); AddEmpty();
                     break;
                 case 1:
-                    Debug.Log("좌: 총 장애물, 우:총 장애물");
-                    AddGun(); AddGun();
-                    break;
-                case 2:
-                    Debug.Log("좌: 빈공간, 우:총 장애물");
                     AddEmpty(); AddGun();
                     break;
             }
@@ -44,7 +60,7 @@ public class ItemSpawner : MonoBehaviour
     {
         GameObject go = Instantiate(gunPrefab);
         go.transform.position = points[pointIndex].position;
-        go.GetComponent<GunItem>().Init(3);
+        go.GetComponent<GunItem>().Init();
 
         NextPoint();
     }
