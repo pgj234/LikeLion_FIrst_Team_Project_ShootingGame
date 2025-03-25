@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 5f;
+    [SerializeField] GameObject gameOverUIObj;      // 게임오버 UI 오브젝트
+
+    public float speed;
     public int attack;
 
     Animator moveAni;
@@ -13,11 +15,11 @@ public class Player : MonoBehaviour
 
     //public GameObject powerUpItem;
 
-    public float attackSpeed = 1;
-    float shotBasicReduceSpeed = 0.05f;
-    float maxShotSpeed = 0.15f;
+    public float attackSpeed = 1;           // 공속
+    float shotBasicReduceSpeed = 0.05f;     // 기본적인 업글당 오르는 공속치
+    float maxShotSpeed = 0.15f;             // 공속 최대치
 
-    WaitForSeconds wait;
+    WaitForSeconds wait;                    // 공속 wait 시간
 
     void Start()
     {
@@ -27,6 +29,7 @@ public class Player : MonoBehaviour
 
         StartCoroutine(Shoot());
         EventManager.instance.playerEvents.onWeaponUpgrade += ShootSpeedSet;
+        EventManager.instance.playerEvents.onPlayerDead += GameOverUiOpen;
     }
     
     void Update()
@@ -61,7 +64,11 @@ public class Player : MonoBehaviour
     {
         if(collision.CompareTag("EBullet"))
         {
-            Destroy(gameObject);
+            EventManager.instance.playerEvents.PlayerDead();
+            EventManager.instance.playerEvents.onPlayerDead -= GameOverUiOpen;
+
+            //Destroy(gameObject);
+            GetComponent<Collider2D>().enabled = false;
             EventManager.instance.playerEvents.onWeaponUpgrade -= ShootSpeedSet;
         }
     }
@@ -88,7 +95,14 @@ public class Player : MonoBehaviour
             yield return wait;
 
             GameObject go = Instantiate(bullet, pos.position, Quaternion.identity);
-            go.GetComponent<Bullet>().speed += (1 - attackSpeed) * 4;
+            Bullet bulletScript = go.GetComponent<Bullet>();
+            bulletScript.speed += (1 - attackSpeed) * 4;
+            bulletScript.attack = this.attack;
         }
+    }
+
+    void GameOverUiOpen()
+    {
+        gameOverUIObj.SetActive(true);
     }
 }

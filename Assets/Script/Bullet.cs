@@ -7,8 +7,8 @@ public class Bullet : MonoBehaviour
     public Bullet bullet;
     public Boss boss;
 
-    public float speed = 4.0f;
-    public int attack=2;
+    public float speed = 4.0f;      // Åº¼Ó
+    public int attack;              // °ø°Ý·Â
 
     void Update()
     {
