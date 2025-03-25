@@ -22,6 +22,7 @@ public class SoundManager : MonoBehaviour
         if (null == instance)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
