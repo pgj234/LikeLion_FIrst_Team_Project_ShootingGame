@@ -9028,6 +9028,7 @@ MonoBehaviour:
   - {fileID: 4547780060919400791, guid: 697823f7d6acbbf499a157b03458a4a0, type: 3}
   - {fileID: 2988666612461701276, guid: 0366fead89d66a046b780799dd6572b2, type: 3}
   bossWarning: {fileID: 1720924261}
+  boss: {fileID: 2988666612461701276, guid: 0366fead89d66a046b780799dd6572b2, type: 3}
   enemyIndex: 0
   enemyCount: 0
 --- !u!4 &7069071856020145683
