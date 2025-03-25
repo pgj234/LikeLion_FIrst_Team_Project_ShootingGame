@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -7,25 +8,29 @@ public class Player : MonoBehaviour
 
     Animator moveAni;
 
-      
-
     public GameObject bullet;
     public Transform pos;
 
     //public GameObject powerUpItem;
 
+    public float attackSpeed = 1;
+    float shotBasicReduceSpeed = 0.05f;
+    float maxShotSpeed = 0.15f;
+
+    WaitForSeconds wait;
+
     void Start()
     {
-        moveAni = GetComponent<Animator>();
-        InvokeRepeating("Shoot", 1f, 1f);
-    }
+        wait = new WaitForSeconds(attackSpeed);
 
+        moveAni = GetComponent<Animator>();
+
+        StartCoroutine(Shoot());
+        EventManager.instance.playerEvents.onWeaponUpgrade += ShootSpeedSet;
+    }
     
     void Update()
     {
-        
-        
-
         float distanceX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         if (Input.GetAxis("Horizontal") <= -2f)
             moveAni.SetBool("left", true);
@@ -50,23 +55,40 @@ public class Player : MonoBehaviour
         groundPos = transform.position;
         groundPos.x = Mathf.Clamp(groundPos.x, -2, 2);
         transform.position = groundPos;
-
     }
-
-    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("EBullet"))
         {
             Destroy(gameObject);
+            EventManager.instance.playerEvents.onWeaponUpgrade -= ShootSpeedSet;
         }
-
-        
     }
 
-    void Shoot()
+    // 공속 및 발사체 속도 변경
+    void ShootSpeedSet()
     {
-        Instantiate(bullet, pos.position, Quaternion.identity);
+        attackSpeed -= shotBasicReduceSpeed;
+
+        if (attackSpeed < maxShotSpeed)
+        {
+            attackSpeed = maxShotSpeed;
+        }
+
+        wait = new WaitForSeconds(attackSpeed);
+
+        Debug.Log("attackSpeed : " + attackSpeed);
+    }
+
+    IEnumerator Shoot()
+    {
+        while (true)
+        {
+            yield return wait;
+
+            GameObject go = Instantiate(bullet, pos.position, Quaternion.identity);
+            go.GetComponent<Bullet>().speed += (1 - attackSpeed) * 4;
+        }
     }
 }
