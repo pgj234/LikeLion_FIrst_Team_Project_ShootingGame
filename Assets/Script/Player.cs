@@ -8,10 +8,14 @@ public class Player : MonoBehaviour
     public float speed;
     public int attack;
 
+    public int monsterKillCount=0;
+
     Animator moveAni;
 
     public GameObject bullet;
     public Transform pos;
+
+    EventManager eventM;
 
     //public GameObject powerUpItem;
 
@@ -23,6 +27,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        attack = 1;
         wait = new WaitForSeconds(attackSpeed);
 
         moveAni = GetComponent<Animator>();
@@ -30,6 +35,7 @@ public class Player : MonoBehaviour
         StartCoroutine(Shoot());
         EventManager.instance.playerEvents.onWeaponUpgrade += ShootSpeedSet;
         EventManager.instance.playerEvents.onPlayerDead += GameOverUiOpen;
+        EventManager.instance.playerEvents.onMonsterDead += ChangeBullet;
     }
     
     void Update()
@@ -58,6 +64,8 @@ public class Player : MonoBehaviour
         groundPos = transform.position;
         groundPos.x = Mathf.Clamp(groundPos.x, -2, 2);
         transform.position = groundPos;
+
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -66,7 +74,7 @@ public class Player : MonoBehaviour
         {
             EventManager.instance.playerEvents.PlayerDead();
             EventManager.instance.playerEvents.onPlayerDead -= GameOverUiOpen;
-
+            
             //Destroy(gameObject);
             GetComponent<Collider2D>().enabled = false;
             EventManager.instance.playerEvents.onWeaponUpgrade -= ShootSpeedSet;
@@ -99,6 +107,24 @@ public class Player : MonoBehaviour
             bulletScript.speed += (1 - attackSpeed) * 4;
             bulletScript.attack = this.attack;
         }
+    }
+
+    void ChangeBullet() //무기변경 1마리 2배, 2마리 3배, 3마리 4배, 5마리 5배(임시로 저장) 
+    {
+        monsterKillCount += 1;
+
+        if (monsterKillCount == 1)
+            attack *= 2;
+        else if (monsterKillCount == 2)
+            attack *= 3;
+        else if (monsterKillCount == 3)
+            attack *= 4;
+        else if (monsterKillCount == 4)
+            attack *= 5;
+
+
+            //Debug.Log("몬스터 죽인횟수: " +monsterKillCount );
+            Debug.Log("공격력: " + attack);
     }
 
     void GameOverUiOpen()
