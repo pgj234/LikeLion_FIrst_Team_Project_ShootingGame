@@ -9,7 +9,6 @@ public static class Constants
 	public static int STAGE1_FENCE_COUNT = 3; //최대등장횟수
 
 	public static int STAGE1_NEED_KILL_COUNT = 2;
-	//public static int enemyCount = 2;
 
 
 	//stage 2
@@ -21,7 +20,6 @@ public static class Constants
 	public static int STAGE2_FENCE_COUNT = 3; //최대등장횟수
 
 	public static int STAGE2_NEED_KILL_COUNT = 2;
-	//public static int enemyCount_2 = 2;
 
 
 	//stage 3
@@ -33,7 +31,6 @@ public static class Constants
 	public static int STAGE3_FENCE_COUNT = 3; //최대등장횟수
 
 	public static int STAGE3_NEED_KILL_COUNT = 2;
-	//public static int enemyCount_3 = 2;
 
 	//stage 4
 	public static float STAGE4_MAP_SPEED = 5f;
