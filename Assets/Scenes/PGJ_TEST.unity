@@ -9236,11 +9236,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverUIObj: {fileID: 1423168918}
+  bulletObjArray:
+  - {fileID: 7906730455084555979, guid: d3fd4b2490470d3478224c91677853a1, type: 3}
+  - {fileID: 8410385761298972961, guid: 25633851dad889e40b5b295c14b3054e, type: 3}
+  - {fileID: 2838656603351288438, guid: 8cb3293049dd5514bbc13b17131961c5, type: 3}
+  - {fileID: 7272699981635540937, guid: 9d36737c0cc56dc47b571017f9198f13, type: 3}
   speed: 5
   attack: 2
-  bullet: {fileID: 2838656603351288438, guid: 8cb3293049dd5514bbc13b17131961c5, type: 3}
-  pos: {fileID: 3356371884348762538}
+  weaponLevel: 0
   attackSpeed: 1
+  pos: {fileID: 3356371884348762538}
+  monsterKillCount: 0
+  isDead: 0
 --- !u!114 &6837596948237782121
 MonoBehaviour:
   m_ObjectHideFlags: 0

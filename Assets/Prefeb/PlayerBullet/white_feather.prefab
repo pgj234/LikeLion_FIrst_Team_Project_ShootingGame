@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5334100357734285461}
   - component: {fileID: 92343127478554405}
   - component: {fileID: 3528007836462936844}
+  - component: {fileID: -8910637899853961809}
   m_Layer: 0
   m_Name: white_feather
   m_TagString: PBullet
@@ -119,7 +120,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -240,3 +241,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-8910637899853961809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272699981635540937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04aa0cd6f6847054f9e7f6ac83246be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  attack: 0

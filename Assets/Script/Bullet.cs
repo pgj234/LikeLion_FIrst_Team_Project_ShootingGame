@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Bullet bullet;
-    public Boss boss;
+    //public Bullet bullet;
+    //public Boss boss;
 
-    public float speed = 4.0f;      // Åº¼Ó
-    public int attack;              // °ø°Ý·Â
+    [HideInInspector] public float speed = 4.0f;      // Åº¼Ó
+    [HideInInspector] public int attack;              // °ø°Ý·Â
 
     void Update()
     {
