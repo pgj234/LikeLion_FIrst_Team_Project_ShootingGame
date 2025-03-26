@@ -8,6 +8,7 @@ TagManager:
   - EBullet
   - Monster
   - PBullet
+  - Fence
   layers:
   - Default
   - TransparentFX

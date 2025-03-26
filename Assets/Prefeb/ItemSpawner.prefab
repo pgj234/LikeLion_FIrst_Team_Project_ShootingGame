@@ -82,7 +82,7 @@ MonoBehaviour:
   points:
   - {fileID: 2433797560282814705}
   - {fileID: 6587046282928316733}
-  spawnFreq: 3
+  spawnFreq: 5
 --- !u!1 &8645722395964208890
 GameObject:
   m_ObjectHideFlags: 0

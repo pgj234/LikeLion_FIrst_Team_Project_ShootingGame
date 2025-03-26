@@ -6,7 +6,6 @@ public class Monster_1 : MonoBehaviour
 	//[SerializeField] float speedMax;
 	//[SerializeField] float HP;
 	[SerializeField] float currentSpeed;
-	[SerializeField] GameObject bullet;
 
 	void Start()
 	{
@@ -28,8 +27,8 @@ public class Monster_1 : MonoBehaviour
 		if (collision.CompareTag( "PBullet" ))
 		{
 
+			EventManager.instance.playerEvents.MonsterDead();
 			Destroy( this.gameObject );
-			SpawnManager._instance.enemyCount++;
 		}
 	}
 }

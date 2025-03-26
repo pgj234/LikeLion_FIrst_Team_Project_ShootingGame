@@ -13,7 +13,7 @@ public class SoundManager : MonoBehaviour
 {
     static public SoundManager instance = null;
 
-    AudioSource audio;
+    AudioSource audioSource;
 
     [SerializeField] AudioClip[] sfxClipArray;
 
@@ -22,17 +22,18 @@ public class SoundManager : MonoBehaviour
         if (null == instance)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
 
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void PlaySFX(Sound sound)
     {
-        audio.PlayOneShot(sfxClipArray[(int)sound]);
+        audioSource.PlayOneShot(sfxClipArray[(int)sound]);
     }
 }
