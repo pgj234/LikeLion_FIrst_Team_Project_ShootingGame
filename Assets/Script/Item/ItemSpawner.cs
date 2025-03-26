@@ -29,7 +29,7 @@ public class ItemSpawner : MonoBehaviour
         {
             StopCoroutine(co);
         }
-
+        if (stage >= Constants.BOSS_STAGE) return;
 
         fenceCount = StageManager.instance.GetFenceCount();
         if (fenceCount > 0)

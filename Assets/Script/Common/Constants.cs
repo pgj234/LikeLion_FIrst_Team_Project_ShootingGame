@@ -45,4 +45,7 @@ public static class Constants
 
 	public static int STAGE4_NEED_KILL_COUNT = 3;
 
+
+
+	public static int BOSS_STAGE = 4;
 }
