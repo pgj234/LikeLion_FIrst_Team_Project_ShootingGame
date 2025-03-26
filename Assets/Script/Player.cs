@@ -114,13 +114,13 @@ public class Player : MonoBehaviour
         monsterKillCount += 1;
 
         if (monsterKillCount == 1)
-            attack *= 2;
+            attack = 2;
         else if (monsterKillCount == 2)
-            attack *= 3;
+            attack = 6;
         else if (monsterKillCount == 3)
-            attack *= 4;
+            attack = 24;
         else if (monsterKillCount == 4)
-            attack *= 5;
+            attack = 125;
 
 
             //Debug.Log("¸ó½ºÅÍ Á×ÀÎÈ½¼ö: " +monsterKillCount );
