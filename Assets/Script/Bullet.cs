@@ -10,9 +10,13 @@ public class Bullet : MonoBehaviour
     [HideInInspector] public float speed = 4.0f;      // 탄속
     [HideInInspector] public int attack;              // 공격력
 
+    Rigidbody2D rb;
+
     void Update()
     {
-        transform.Translate(Vector2.up*speed*Time.deltaTime);
+        rb = GetComponent<Rigidbody2D>();
+        rb.linearVelocity = Vector2.up * speed; // Y축 방향으로 이동
+        rb.angularVelocity = 360f;
     }
 
     void OnBecameInvisible()
