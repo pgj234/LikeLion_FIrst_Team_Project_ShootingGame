@@ -27,7 +27,7 @@ public class BossBullet2 : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            //¹Ì»çÀÏÁö¿ò
+            //ï¿½Ì»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             Destroy(gameObject);
         }
     }

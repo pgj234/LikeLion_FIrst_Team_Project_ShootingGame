@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class BossBullet : MonoBehaviour
 {
-	public GameObject target; //ÇÃ·¹ÀÌ¾î
+	public GameObject target; //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½
 	public float Speed = 4.5f;
 	Vector2 dir;
 	Vector2 dirNo;
 
 	void Start()
 	{
-		//ÇÃ·¹ÀÌ¾î ÅÂÅ©·Î Ã£±â
+		//ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ Ã£ï¿½ï¿½
 		target = GameObject.FindGameObjectWithTag( "Player" );
-		//A - B A¸¦ ¹Ù¶óº¸´Â º¤ÅÍ
+		//A - B Aï¿½ï¿½ ï¿½Ù¶óº¸´ï¿½ ï¿½ï¿½ï¿½ï¿½
 		dir = target.transform.position - transform.position;
-		//¹æÇâ º¤ÅÍ¸¸ ±¸ÇÏ±â ´ÜÀ§º¤ÅÍ Á¤±ÔÈ­ ³ë¸» 1ÀÇ Å©±â·Î ¸¸µç´Ù.
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­ ï¿½ë¸» 1ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 		dirNo = dir.normalized;
 
 

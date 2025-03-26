@@ -9,6 +9,10 @@ public class ItemSpawner : MonoBehaviour
     public GameObject peoplePrefab;//people++
     public Transform[] points;
     public float spawnFreq = 1f;
+    
+    [Range(0f, 1f)]
+    public float gunSpawnProbability = 0.7f; // GunItem 스폰 확률 (기본값 70%)
+    
     private int pointIndex = 0;
 
     private void Start()
@@ -45,14 +49,24 @@ public class ItemSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnFreq);
 
-            switch (Random.Range(0, 2))
+            // 스폰 확률에 따라 아이템 생성
+            if (Random.value < gunSpawnProbability)
             {
-                case 0:
-                    AddGun(); AddEmpty();
-                    break;
-                case 1:
-                    AddEmpty(); AddGun();
-                    break;
+                AddGun();
+            }
+            else
+            {
+                AddEmpty();
+            }
+            
+            // 두 번째 포인트에 대해서도 스폰 확률 적용
+            if (Random.value < gunSpawnProbability)
+            {
+                AddGun();
+            }
+            else
+            {
+                AddEmpty();
             }
         }
     }

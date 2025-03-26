@@ -9,7 +9,7 @@ public class Boss : MonoBehaviour
 
 
 
-    // º¸½º ºÒ¸´
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½
     public GameObject bossbullet;
     public GameObject bossbullet2;
     public Transform pos1;
@@ -20,13 +20,13 @@ public class Boss : MonoBehaviour
 
     private bool isPlayerAlive = true;
 
-    //ÇÃ·¹ÀÌ¾î »ýÁ¸¿©ºÎ È®ÀÎ
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     bool check;
 
     public int HP
     {
         get => BHP;
-        //0ÀÌÇÏ·Î ¶³¾îÁöÁö ¾ÊÀ½
+        //0ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         private set => BHP = Math.Clamp(value, 0, BHP);
     }
 
@@ -50,7 +50,7 @@ public class Boss : MonoBehaviour
     {
         while (isPlayerAlive)
         {
-            //¹Ì»çÀÏ
+            //ï¿½Ì»ï¿½ï¿½ï¿½
             Instantiate(bossbullet, pos1.position, Quaternion.identity);
             yield return new WaitForSeconds(2.0f);
 
@@ -58,41 +58,41 @@ public class Boss : MonoBehaviour
     }
     IEnumerator CircleFire()
     {
-        //°ø°ÝÁÖ±â
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
         float attackRATE = 5;
         int count = 10;
-        //¹ß»çÃ¼ »çÀÌÀÇ °¢µµ
+        //ï¿½ß»ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         float intervalangle = -180 / count;
-        //°¡ÁßµÇ´Â °¢µµ(°°Àº À§Ä¡·Î ¹ß»çÇÏÁö ¾Êµµ·Ï ¼³Á¤)
+        //ï¿½ï¿½ï¿½ßµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         float weightangle = 0f;
 
-        //¿ø ÇüÅÂ·Î ¹ß»çÇÏ´Â ¹ß»çÃ¼ »ý¼º(count ¸¸Å­ »ý¼º)
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ß»ï¿½ï¿½Ï´ï¿½ ï¿½ß»ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½(count ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½)
         while (isPlayerAlive)
         {
             for (int i = 0; i < count; ++i)
             {
-                //¹ß»çÃ¼ »ý¼º
+                //ï¿½ß»ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
                 GameObject clone = Instantiate(bossbullet2, transform.position, Quaternion.identity);
-                //¹ß»çÃ¼ ÀÌµ¿¹æÇâ(°¢µµ)
+                //ï¿½ß»ï¿½Ã¼ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
                 float angle = weightangle + intervalangle * i;
-                //¹ß»çÃ¼ ÀÌµ¿¹æÇâ(º¤ÅÍ)
-                //cos(°¢µµ) ¶óµð¾È ´ÜÀ§ÀÇ °¢µµ Ç¥ÇöÀ» À§ÇØ pi/180À» °öÇÔ
+                //ï¿½ß»ï¿½Ã¼ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
+                //cos(ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ pi/180ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 float x = Mathf.Cos(angle * Mathf.Deg2Rad);
-                //sin(°¢µµ) ¶óµð¾È ´ÜÀ§ÀÇ °¢µµÇ¥ÇöÀ» À§ÇØ pi/180À» °öÇÔ
+                //sin(ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ pi/180ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 float y = Mathf.Sin(angle * Mathf.Deg2Rad);
-                //¹ß»çÃ¼ ÀÌµ¿¹æÇâ ¼³Á¤
+                //ï¿½ß»ï¿½Ã¼ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 clone.GetComponent<BossBullet2>().Move(new Vector2(x, y));
             }
-            //¹ß»çÃ¼°¡ »ý¼ºµµ
+            //ï¿½ß»ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             weightangle += 1;
-            //3ÃÊ¸¶´Ù ¹Ì»çÀÏ ¹ß»ç
+            //3ï¿½Ê¸ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ß»ï¿½
             yield return new WaitForSeconds(attackRATE);
         }
     }
 
     private void Update()
     {
-        //ÇÃ¿¡ÀÌ¾î°¡ Á×¾úÀ»½Ã ÃÑ¾Ë ¹ß»ç¸¦ ¸ØÃß±â
+        //ï¿½Ã¿ï¿½ï¿½Ì¾î°¡ ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ ï¿½ß»ç¸¦ ï¿½ï¿½ï¿½ß±ï¿½
         if (GameObject.FindWithTag("Player") != null)
         {
             isPlayerAlive = !GameObject.FindWithTag("Player").GetComponent<Player>().isDead;
