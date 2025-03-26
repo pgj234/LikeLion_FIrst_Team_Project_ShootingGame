@@ -18,6 +18,11 @@ public class Boss : MonoBehaviour
 
     private int BHP;
 
+    private bool isPlayerAlive = true;
+
+    //플레이어 생존여부 확인
+    bool check;
+
     public int HP
     {
         get => BHP;
@@ -43,7 +48,7 @@ public class Boss : MonoBehaviour
     }
     IEnumerator BossBullet()
     {
-        while (true)
+        while (isPlayerAlive)
         {
             //미사일
             Instantiate(bossbullet, pos1.position, Quaternion.identity);
@@ -62,7 +67,7 @@ public class Boss : MonoBehaviour
         float weightangle = 0f;
 
         //원 형태로 발사하는 발사체 생성(count 만큼 생성)
-        while (true)
+        while (isPlayerAlive)
         {
             for (int i = 0; i < count; ++i)
             {
@@ -87,7 +92,15 @@ public class Boss : MonoBehaviour
 
     private void Update()
     {
-
+        //플에이어가 죽었을시 총알 발사를 멈추기
+        if (GameObject.FindWithTag("Player") != null)
+        {
+            isPlayerAlive = !GameObject.FindWithTag("Player").GetComponent<Player>().isDead;
+        }
+        else
+        {
+            isPlayerAlive = false;
+        }
     }
     private void OnBecameInvisible()
     {
