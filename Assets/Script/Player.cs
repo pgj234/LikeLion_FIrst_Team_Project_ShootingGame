@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 
     public Transform pos;
 
+
     Animator moveAni;
     WaitForSeconds wait;                    // 공속 wait 시간
 
