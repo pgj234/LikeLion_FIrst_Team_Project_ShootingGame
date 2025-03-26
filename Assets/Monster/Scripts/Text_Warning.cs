@@ -8,6 +8,9 @@ public class Text_Warning : MonoBehaviour
 
 	TextMeshProUGUI text;
 
+	[SerializeField] Color startColor = Color.white;
+	[SerializeField] Color endColor = Color.red;
+
 
 	void Awake()
 	{
@@ -15,7 +18,7 @@ public class Text_Warning : MonoBehaviour
 	}
 	void Start()
 	{
-		StartCoroutine( TextColorChange() );
+		StartCoroutine(TextColorChange());
 	}
 
 	void Update()
@@ -27,8 +30,8 @@ public class Text_Warning : MonoBehaviour
 	{
 		while (true)
 		{
-			yield return StartCoroutine( TextColorLerp( Color.red, Color.yellow ) );
-			yield return StartCoroutine( TextColorLerp( Color.yellow, Color.red ) );
+			yield return StartCoroutine(TextColorLerp(startColor, endColor));
+			yield return StartCoroutine(TextColorLerp(endColor, startColor));
 		}
 	}
 
@@ -41,7 +44,7 @@ public class Text_Warning : MonoBehaviour
 		{
 			currentTime += Time.deltaTime;
 			percent = currentTime / textLerpTime;
-			text.color = Color.Lerp( start, end, percent );
+			text.color = Color.Lerp(start, end, percent);
 			yield return null;
 		}
 	}
