@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
-
-
-
     // ���� �Ҹ�
     public GameObject bossbullet;
     public GameObject bossbullet2;
@@ -22,7 +19,8 @@ public class Boss : MonoBehaviour
 
     //�÷��̾� �������� Ȯ��
     bool check;
-
+    //클리어 ui
+    public GameObject clearUI;
     public int HP
     {
         get => BHP;
@@ -105,6 +103,7 @@ public class Boss : MonoBehaviour
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
+
     }
 
     public void Damage(int ATK)
@@ -115,6 +114,12 @@ public class Boss : MonoBehaviour
         if(HP <= 0)
         {
             Destroy(gameObject);
+            StartCoroutine (ShowClearUI());
         }
+    }
+    private IEnumerator ShowClearUI()
+    {
+        yield return new WaitForSeconds(1f); //1초후 생성
+        clearUI.SetActive(true);
     }
 }

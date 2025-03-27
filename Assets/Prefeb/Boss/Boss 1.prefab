@@ -297,6 +297,7 @@ MonoBehaviour:
   pos1: {fileID: 8683596219825610241}
   pos2: {fileID: 9144397981626889480}
   bhpBar: {fileID: 866412729363949332}
+  clearUI: {fileID: 5972481216634018224, guid: 71fc2e42043a10d4ebf47d3091b0c192, type: 3}
 --- !u!1 &4344323191314742887
 GameObject:
   m_ObjectHideFlags: 0
