@@ -20,10 +20,13 @@ public static class Constants
 	/// <summary>스테이지 1 클리어에 필요한 몬스터 처치 수</summary>
 	public static int STAGE1_NEED_KILL_COUNT = 2;
 
+	public static int STAGE1_PEOPLE_FENCE_INIT_VALUE = -3;//인구증가 초기값
+    public static int STAGE1_PEOPLE_FENCE_COUNT = 3; //최대등장횟수
 
-	//===== 스테이지 2 설정값 =====
-	/// <summary>스테이지 2 맵 스크롤 속도</summary>
-	public static float STAGE2_MAP_SPEED = 4f;
+
+    //===== 스테이지 2 설정값 =====
+    /// <summary>스테이지 2 맵 스크롤 속도</summary>
+    public static float STAGE2_MAP_SPEED = 4f;
 	/// <summary>스테이지 2 아이템 이동 속도</summary>
 	public static float STAGE2_ITEM_SPEED = 4f;
 	/// <summary>스테이지 2 몬스터 이동 속도 (맵 속도의 2배)</summary>
@@ -36,6 +39,10 @@ public static class Constants
 
 	/// <summary>스테이지 2 클리어에 필요한 몬스터 처치 수</summary>
 	public static int STAGE2_NEED_KILL_COUNT = 2;
+
+    public static int STAGE2_PEOPLE_FENCE_INIT_VALUE = -8; //인구증가 초기값
+    public static int STAGE2_PEOPLE_FENCE_COUNT = 3; //최대등장횟수
+
 
 
 	//===== 스테이지 3 설정값 =====
@@ -54,9 +61,12 @@ public static class Constants
 	/// <summary>스테이지 3 클리어에 필요한 몬스터 처치 수</summary>
 	public static int STAGE3_NEED_KILL_COUNT = 2;
 
-	//===== 스테이지 4 (보스 스테이지) 설정값 =====
-	/// <summary>스테이지 4 맵 스크롤 속도</summary>
-	public static float STAGE4_MAP_SPEED = 5f;
+    public static int STAGE3_PEOPLE_FENCE_INIT_VALUE = -30; //인구증가 초기값
+    public static int STAGE3_PEOPLE_FENCE_COUNT = 3; //최대등장횟수
+
+    //===== 스테이지 4 (보스 스테이지) 설정값 =====
+    /// <summary>스테이지 4 맵 스크롤 속도</summary>
+    public static float STAGE4_MAP_SPEED = 5f;
 	/// <summary>스테이지 4 아이템 이동 속도</summary>
 	public static float STAGE4_ITEM_SPEED = 5f;
 	/// <summary>스테이지 4 몬스터 이동 속도 (맵 속도의 2배)</summary>

@@ -112,4 +112,32 @@ public class StageManager : MonoBehaviour
         if (spawnCount < 0) Debug.LogError($"curStage:{curStage},에 대한 KILL_COUNT가 정의되어야합니다.");
         return spawnCount;
     }
+
+
+    public int GetPeopleFenceInitValue()
+    {
+        int initValue = curStage switch
+        {
+            1 => Constants.STAGE1_PEOPLE_FENCE_INIT_VALUE,
+            2 => Constants.STAGE2_PEOPLE_FENCE_INIT_VALUE,
+            3 => Constants.STAGE3_PEOPLE_FENCE_INIT_VALUE,
+            _ => 1,
+        };
+        if(initValue > 0) Debug.LogError($"curStage:{curStage},에 대한 PEOPLE_FENCE_INIT_VALUE 정의되어야합니다.");
+
+        return initValue;
+    }
+
+    public int GetPeopleFenceCount()
+    {
+        int spawnCount = curStage switch
+        {
+            1 => Constants.STAGE1_PEOPLE_FENCE_COUNT,
+            2 => Constants.STAGE2_PEOPLE_FENCE_COUNT,
+            3 => Constants.STAGE3_PEOPLE_FENCE_COUNT,
+            _ => -1,
+        };
+        if (spawnCount < 0) Debug.LogError($"curStage:{curStage},에 대한 PEOPLE_FENCE_COUNT 정의되어야합니다.");
+        return spawnCount;
+    }
 }
