@@ -109,7 +109,7 @@ public class StageManager : MonoBehaviour
             3 => Constants.STAGE3_NEED_KILL_COUNT,
             _ => -1,
         };
-        if (spawnCount < 0) Debug.LogError($"curStage:{curStage},에 대한 FENCE_COUNT가 정의되어야합니다.");
+        if (spawnCount < 0) Debug.LogError($"curStage:{curStage},에 대한 KILL_COUNT가 정의되어야합니다.");
         return spawnCount;
     }
 }
