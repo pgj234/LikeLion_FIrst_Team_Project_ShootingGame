@@ -101,4 +101,9 @@ public class PeopleItem : MonoBehaviour
         text.fontSize = originFontSize;
         textShadow.fontSize = originFontSize;
     }
+
+    internal int PowerGet()
+    {
+        return power;
+    }
 }

@@ -82,6 +82,7 @@ public class Player : MonoBehaviour
             return;
         }
 
+        // 적 탄
         if (collision.CompareTag("EBullet"))
         {
             playerManager.isDead = true;
@@ -95,6 +96,16 @@ public class Player : MonoBehaviour
 
             EventManager.instance.playerEvents.onMonsterDead -= playerManager.ChangeBullet;
         }
+
+        // 플레이어 증감 울타리
+        if (collision.CompareTag("PeopleUpFence"))
+        {
+            if (collision.TryGetComponent(out PeopleItem peopleItemScript))
+            {
+                playerManager.PlayerAddOrDecrease(peopleItemScript.PowerGet());
+                Destroy(collision.gameObject);
+            }
+        }
     }
 
     internal IEnumerator Shoot()
@@ -103,10 +114,13 @@ public class Player : MonoBehaviour
         {
             yield return wait;
 
-            GameObject go = Instantiate(bulletObjArray[playerManager.weaponLevel - 1], pos.position, Quaternion.identity);
-            Bullet bulletScript = go.GetComponent<Bullet>();
-            bulletScript.speed += (1 - attackSpeed) * 4;
-            bulletScript.attack = playerManager.attack;
+            if (false == UIManager.instance.ClearStageUiOpenStateGet())
+            {
+                GameObject go = Instantiate(bulletObjArray[playerManager.weaponLevel - 1], pos.position, Quaternion.identity);
+                Bullet bulletScript = go.GetComponent<Bullet>();
+                bulletScript.speed += (1 - attackSpeed) * 4;
+                bulletScript.attack = playerManager.attack;
+            }
         }
     }
 

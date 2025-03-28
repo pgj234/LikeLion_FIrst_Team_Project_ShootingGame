@@ -242,7 +242,7 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-        if (true == isDead)
+        if (true == isDead || true == UIManager.instance.ClearStageUiOpenStateGet())
         {
             return;
         }
