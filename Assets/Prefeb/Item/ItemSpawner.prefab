@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunPrefab: {fileID: 775620408428853016, guid: e870f91b6cb7e474da84fa32d6b4d338, type: 3}
-  peoplePrefab: {fileID: 0}
+  peoplePrefab: {fileID: 775620408428853016, guid: 8e738398dbb24bd4eaaa7dccf9accf82, type: 3}
   points:
   - {fileID: 2433797560282814705}
   - {fileID: 6587046282928316733}
