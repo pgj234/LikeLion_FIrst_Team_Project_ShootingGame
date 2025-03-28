@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,22 +18,30 @@ public class Boss : MonoBehaviour
 
     private bool isPlayerAlive = true;
 
-    //�÷��̾� �������� Ȯ��
-    bool check;
-    //클리어 ui
-    public GameObject clearUI;
     public int HP
     {
         get => BHP;
         //0���Ϸ� �������� ����
         private set => BHP = Math.Clamp(value, 0, BHP);
     }
-
+    private Vector3 startPosition; // 시작 위치 (화면 위쪽)
+    private Vector3 targetPosition; // 목표 위치 (고정될 위치)
+    private float moveDuration = 3f; // 이동에 걸리는 시간
+    private bool hasReachedTarget = false;
     private void Awake()
     {
         BHP = 4000;
         SetMaxHP(BHP);
+        // 화면의 위쪽 외부로 시작 위치 설정 (카메라의 orthographicSize 사용)
+        float screenTop = Camera.main.orthographicSize + 2f; // 화면 위쪽 외부
+        startPosition = new Vector3(transform.position.x, screenTop, transform.position.z);
+
+        // 보스가 내려올 목표 위치 설정 (화면의 중간 혹은 원하는 고정된 위치)
+        targetPosition = new Vector3(transform.position.x, 3.2556f, transform.position.z); // 원하는 고정 위치로 조정 가능
+    
     }
+
+
     public void SetMaxHP(int health)
     {
         bhpBar.maxValue = health;
@@ -41,17 +50,21 @@ public class Boss : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(BossBullet());
+        StartCoroutine(MoveDownLerp());
+        StartCoroutine(BossBullet());  
         StartCoroutine(CircleFire());
     }
     IEnumerator BossBullet()
     {
-        while (isPlayerAlive)
+        while (!hasReachedTarget) // 보스가 목표 위치에 도달할 때까지 대기
         {
-            //�̻���
+            yield return null;
+        }
+
+        while (isPlayerAlive) // 이제 보스가 목표 위치에 도달한 후부터만 실행
+        {
             Instantiate(bossbullet, pos1.position, Quaternion.identity);
             yield return new WaitForSeconds(2.0f);
-
         }
     }
     IEnumerator CircleFire()
@@ -64,6 +77,10 @@ public class Boss : MonoBehaviour
         //���ߵǴ� ����(���� ��ġ�� �߻����� �ʵ��� ����)
         float weightangle = 0f;
 
+        while (!hasReachedTarget) // 보스가 목표 위치에 도달할 때까지 대기
+        {
+            yield return null;
+        }
         //�� ���·� �߻��ϴ� �߻�ü ����(count ��ŭ ����)
         while (isPlayerAlive)
         {
@@ -87,7 +104,25 @@ public class Boss : MonoBehaviour
             yield return new WaitForSeconds(attackRATE);
         }
     }
+    private IEnumerator MoveDownLerp()
+    {
+        float elapsedTime = 0f;
 
+        // Lerp를 통해 보스를 화면 상단에서 지정된 위치로 부드럽게 이동시킴
+        while (elapsedTime < moveDuration)
+        {
+            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / moveDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 목표 위치에 정확히 도달하도록 보정
+        transform.position = targetPosition;
+        //등장 후 총알 발사
+        hasReachedTarget = true;
+        StartCoroutine(BossBullet());
+        StartCoroutine(CircleFire());
+    }
     private void Update()
     {
         //�ÿ��̾ �׾����� �Ѿ� �߻縦 ���߱�
@@ -119,12 +154,7 @@ public class Boss : MonoBehaviour
         if(HP <= 0)
         {
             Destroy(gameObject);
-            StartCoroutine (ShowClearUI());
         }
     }
-    private IEnumerator ShowClearUI()
-    {
-        yield return new WaitForSeconds(1f); //1초후 생성
-        clearUI.SetActive(true);
-    }
+   
 }
