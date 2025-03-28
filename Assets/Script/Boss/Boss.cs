@@ -94,6 +94,7 @@ public class Boss : MonoBehaviour
         if (GameObject.FindWithTag("Player") != null)
         {
             isPlayerAlive = !GameObject.FindWithTag("Player").GetComponent<Player>().GetPlayerManager().isDead;
+        }
         else
         {
             isPlayerAlive = false;
