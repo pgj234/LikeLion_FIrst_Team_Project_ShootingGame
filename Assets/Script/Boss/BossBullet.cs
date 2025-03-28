@@ -41,4 +41,8 @@ public class BossBullet : MonoBehaviour
 	{
 		Destroy( gameObject );
 	}
+    public void SetSpeed(float newSpeed)
+    {
+        Speed = newSpeed;
+    }
 }

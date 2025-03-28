@@ -70,8 +70,9 @@ public class Boss : MonoBehaviour
 
         while (isPlayerAlive) // 이제 보스가 목표 위치에 도달한 후부터만 실행
         {
-            Instantiate(bossbullet, pos1.position, Quaternion.identity);
-            yield return new WaitForSeconds(2.0f);
+            GameObject bullet = Instantiate(bossbullet, pos1.position, Quaternion.identity);
+            bullet.GetComponent<BossBullet>().SetSpeed(5f * bulletSpeedMultiplier); // 탄속 적용
+            yield return new WaitForSeconds(2.0f / bulletSpeedMultiplier); // 속도 증가 시 발사 간격 감소
         }
     }
     IEnumerator CircleFire()
@@ -103,12 +104,12 @@ public class Boss : MonoBehaviour
                 //sin(����) ���� ������ ����ǥ���� ���� pi/180�� ����
                 float y = Mathf.Sin(angle * Mathf.Deg2Rad);
                 //�߻�ü �̵����� ����
-                clone.GetComponent<BossBullet2>().Move(new Vector2(x, y));
+                clone.GetComponent<BossBullet2>().Move(new Vector2(x, y) * bulletSpeedMultiplier);
             }
             //�߻�ü�� ������
             weightangle += 1;
             //3�ʸ��� �̻��� �߻�
-            yield return new WaitForSeconds(attackRATE);
+            yield return new WaitForSeconds(attackRATE / bulletSpeedMultiplier);
         }
     }
     private IEnumerator MoveDownLerp()
@@ -197,9 +198,14 @@ public class Boss : MonoBehaviour
         bhpBar.value = HP;
         if(HP <= 0)
         {
-            StartCoroutine(CameraShake.instance.Shake(1f, 0.3f));
-            Destroy(gameObject);
+            StartCoroutine(DieAfterShake());
         }
+
     }
-   
+    private IEnumerator DieAfterShake()
+    {
+        yield return StartCoroutine(CameraShake.instance.Shake(1f, 0.3f)); // 카메라 흔들림 완료 대기
+        Destroy(gameObject); // 흔들림이 끝난 후 보스 제거
+    }
+
 }
