@@ -94,6 +94,11 @@ public class Boss : MonoBehaviour
         if (GameObject.FindWithTag("Player") != null)
         {
             isPlayerAlive = !GameObject.FindWithTag("Player").GetComponent<Player>().GetPlayerManager().isDead;
+
+            if (!isPlayerAlive)
+            {
+                GetComponent<Collider2D>().enabled = false; // 콜라이더 비활성화
+            }
         }
         else
         {
