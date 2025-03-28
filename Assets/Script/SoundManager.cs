@@ -6,7 +6,8 @@ public enum Sound
     EnemyDie,
     GetItem,
     Victory,
-    GameOver
+    GameOver,
+    ButtonClick
 }
 
 public class SoundManager : MonoBehaviour
