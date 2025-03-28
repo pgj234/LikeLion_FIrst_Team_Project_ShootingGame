@@ -100,10 +100,11 @@ public class Player : MonoBehaviour
         // 플레이어 증감 울타리
         if (collision.CompareTag("PeopleUpFence"))
         {
-            if (collision.TryGetComponent(out PeopleItem peopleItemScript))
+            var peopleItem = collision.GetComponentInParent<PeopleItem>();
+            if (peopleItem != null)
             {
-                playerManager.PlayerAddOrDecrease(peopleItemScript.PowerGet());
-                Destroy(collision.gameObject);
+                playerManager.PlayerAddOrDecrease(peopleItem.PowerGet());
+                Destroy(peopleItem.gameObject);
             }
         }
     }
