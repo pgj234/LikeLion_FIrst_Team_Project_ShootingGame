@@ -96,6 +96,16 @@ public class Player : MonoBehaviour
 
             EventManager.instance.playerEvents.onMonsterDead -= playerManager.ChangeBullet;
         }
+
+        // 플레이어 증감 울타리
+        if (collision.CompareTag("PeopleUpFence"))
+        {
+            if (collision.TryGetComponent(out PeopleItem peopleItemScript))
+            {
+                playerManager.PlayerAddOrDecrease(peopleItemScript.PowerGet());
+                Destroy(collision.gameObject);
+            }
+        }
     }
 
     internal IEnumerator Shoot()
