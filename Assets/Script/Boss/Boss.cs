@@ -15,8 +15,15 @@ public class Boss : MonoBehaviour
     [SerializeField] private Slider bhpBar;
 
     private int BHP;
-
     private bool isPlayerAlive = true;
+
+    //체력 절반 이하 체크
+    private bool isMovingSide;
+    private bool isFast = false; //탄막속도
+
+    private float attackRate = 5f; // 탄막 발사 간격
+    private float bulletSpeedMultiplier = 1f; // 탄속 배율
+
 
     public int HP
     {
@@ -139,6 +146,43 @@ public class Boss : MonoBehaviour
         {
             isPlayerAlive = false;
         }
+        // 체력이 절반 이하가 되면 좌우 이동 + 탄속 증가
+        if (!isMovingSide && HP <= BHP / 2)
+        {
+            isMovingSide = true;
+            StartCoroutine(MoveSideToSide());
+        }
+
+        if (!isFast && HP <= BHP / 2)
+        {
+            isFast = true;
+            bulletSpeedMultiplier = 2f; // 탄막 속도 2배 증가
+        }
+    }
+    private IEnumerator MoveSideToSide()
+    {
+        float moveSpeed = 3f;
+        float moveDistance = 2f;
+        bool movingRight = true;
+
+        while (isPlayerAlive && HP > 0)
+        {
+            float targetX = movingRight ? targetPosition.x + moveDistance : targetPosition.x - moveDistance;
+            float elapsedTime = 0f;
+            Vector3 startPos = transform.position;
+            Vector3 endPos = new Vector3(targetX, transform.position.y, transform.position.z);
+
+            while (elapsedTime < 1f)
+            {
+                transform.position = Vector3.Lerp(startPos, endPos, elapsedTime);
+                elapsedTime += Time.deltaTime * moveSpeed;
+                yield return null;
+            }
+
+            transform.position = endPos;
+            movingRight = !movingRight;
+            yield return new WaitForSeconds(0.5f);
+        }
     }
     private void OnBecameInvisible()
     {
@@ -153,6 +197,7 @@ public class Boss : MonoBehaviour
         bhpBar.value = HP;
         if(HP <= 0)
         {
+            StartCoroutine(CameraShake.instance.Shake(1f, 0.3f));
             Destroy(gameObject);
         }
     }
