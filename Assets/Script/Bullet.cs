@@ -56,6 +56,8 @@ public class Bullet : MonoBehaviour
 
     IEnumerator BulletDestroyAndEffect()
     {
+        SoundManager.instance.PlaySFX(Sound.PlayerBulletImpact);
+
         speed = 0;
         GetComponent<PolygonCollider2D>().enabled = false;
 

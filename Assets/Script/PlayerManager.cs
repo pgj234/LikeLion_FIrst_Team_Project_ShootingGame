@@ -156,6 +156,8 @@ public class PlayerManager : MonoBehaviour
     // 모든 플레이어 공속 및 발사체 속도 변경
     internal void ShootSpeedSet()
     {
+        SoundManager.instance.PlaySFX(Sound.GetItem);
+
         managerAttackSpeed -= managerShotBasicReduceSpeed;
 
         if (managerAttackSpeed < managerMaxShotSpeed)

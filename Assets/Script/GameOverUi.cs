@@ -7,7 +7,7 @@ public class GameOverUi : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene("PGJ_TEST");
+            SceneMaster.instance.OnClickReStart();
         }
     }
 }

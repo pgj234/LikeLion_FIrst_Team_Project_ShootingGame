@@ -85,16 +85,13 @@ public class Player : MonoBehaviour
         // 적 탄
         if (collision.CompareTag("EBullet"))
         {
-            playerManager.isDead = true;
+            PlayerDie();
+        }
 
-            EventManager.instance.playerEvents.PlayerDead();
-            EventManager.instance.playerEvents.onPlayerDead -= GameOverUiOpen;
-
-            //Destroy(gameObject);
-            GetComponent<CapsuleCollider2D>().enabled = false;
-            EventManager.instance.playerEvents.onWeaponUpgrade -= playerManager.ShootSpeedSet;
-
-            EventManager.instance.playerEvents.onMonsterDead -= playerManager.ChangeBullet;
+        // 울타리
+        if (collision.CompareTag("Fence"))
+        {
+            PlayerDie();
         }
 
         // 플레이어 증감 울타리
@@ -103,10 +100,28 @@ public class Player : MonoBehaviour
             var peopleItem = collision.GetComponentInParent<PeopleItem>();
             if (peopleItem != null)
             {
+                SoundManager.instance.PlaySFX(Sound.GetItem);
                 playerManager.PlayerAddOrDecrease(peopleItem.PowerGet());
                 Destroy(peopleItem.gameObject);
             }
         }
+    }
+
+    void PlayerDie()
+    {
+        playerManager.isDead = true;
+
+        SoundManager.instance.StopBGM();
+        SoundManager.instance.PlaySFX(Sound.GameOver);
+
+        EventManager.instance.playerEvents.PlayerDead();
+        EventManager.instance.playerEvents.onPlayerDead -= GameOverUiOpen;
+
+        //Destroy(gameObject);
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        EventManager.instance.playerEvents.onWeaponUpgrade -= playerManager.ShootSpeedSet;
+
+        EventManager.instance.playerEvents.onMonsterDead -= playerManager.ChangeBullet;
     }
 
     internal IEnumerator Shoot()

@@ -160,12 +160,12 @@ public class Boss : MonoBehaviour
         if (!isFast && HP <= (BHP / 2))
         {
             isFast = true;
-            bulletSpeedMultiplier = 2f; // 탄막 속도 2배 증가
+            bulletSpeedMultiplier = 1.5f; // 탄막 속도 1.5배 증가
         }
     }
     private IEnumerator MoveSideToSide()
     {
-        float moveSpeed = 3f;
+        float moveSpeed = 1.3f;
         float moveDistance = 2f;
         bool movingRight = true;
 
@@ -210,7 +210,15 @@ public class Boss : MonoBehaviour
     }
     private IEnumerator DieAfterShake()
     {
+        GetComponent<Collider2D>().enabled = false; // 콜라이더 비활성화
+
         yield return StartCoroutine(CameraShake.instance.Shake(1f, 0.3f)); // 카메라 흔들림 완료 대기
+
+        yield return new WaitForSeconds(2);
+
+        UIManager.instance.OpenUI(UIType.BossClear);
+        SoundManager.instance.PlaySFX(Sound.Victory);
+
         Destroy(gameObject); // 흔들림이 끝난 후 보스 제거
     }
 

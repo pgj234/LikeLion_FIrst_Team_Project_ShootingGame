@@ -6,7 +6,8 @@ public enum UIType
 {
     StartStage,
     ClearStage,
-    BossWarnning
+    BossWarnning,
+    BossClear
 }
 public class UIManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject StartStageUI;
     [SerializeField] GameObject ClearStageUI;
     [SerializeField] GameObject BossWarnningUI;
+    [SerializeField] GameObject BossClearUI;
 
     private void Awake()
     {
@@ -37,6 +39,10 @@ public class UIManager : MonoBehaviour
             case UIType.BossWarnning:
                 BossWarnningUI.SetActive(true);
                 break;
+            case UIType.BossClear:
+                BossClearUI.SetActive(true);
+                break;
+                
         }
     }
     public void CloseUI(UIType type)
@@ -51,6 +57,9 @@ public class UIManager : MonoBehaviour
                 break;
             case UIType.BossWarnning:
                 BossWarnningUI.SetActive(false);
+                break;
+            case UIType.BossClear:
+                BossClearUI.SetActive(false);
                 break;
         }
     }

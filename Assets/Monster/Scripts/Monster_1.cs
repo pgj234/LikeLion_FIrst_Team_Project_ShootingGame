@@ -49,7 +49,9 @@ public class Monster_1 : MonoBehaviour
 		// 플레이어의 총알과 충돌 시
 		if (collision.CompareTag("PBullet"))
 		{
-			Debug.Log("몬스터 처치됨: " + gameObject.name);
+            SoundManager.instance.PlaySFX(Sound.EnemyDie);
+
+            Debug.Log("몬스터 처치됨: " + gameObject.name);
 			
 			// 이벤트 발생 전에 총알 제거
 			Destroy(collision.gameObject);

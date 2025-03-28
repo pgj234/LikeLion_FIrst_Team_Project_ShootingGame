@@ -1,8 +1,14 @@
 using UnityEngine;
 
+public enum BGM
+{
+    Main,
+    Play
+}
+
 public enum Sound
 {
-    PlayerBulletShot,
+    PlayerBulletImpact,
     EnemyDie,
     GetItem,
     Victory,
@@ -16,6 +22,9 @@ public class SoundManager : MonoBehaviour
 
     AudioSource audioSource;
 
+    [SerializeField] AudioClip[] bgmClipArray;
+
+    [Space(20)]
     [SerializeField] AudioClip[] sfxClipArray;
 
     void Awake()
@@ -31,6 +40,17 @@ public class SoundManager : MonoBehaviour
         }
 
         audioSource = GetComponent<AudioSource>();
+    }
+
+    public void PlayBGM(BGM bgm)
+    {
+        audioSource.clip = bgmClipArray[(int)bgm];
+        audioSource.Play();
+    }
+
+    public void StopBGM()
+    {
+        audioSource.Stop();
     }
 
     public void PlaySFX(Sound sound)
