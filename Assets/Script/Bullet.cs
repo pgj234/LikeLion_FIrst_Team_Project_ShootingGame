@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.linearVelocity = Vector2.up * speed; // Y축 방향으로 이동
-        rb.angularVelocity = 360f;
+        //rb.angularVelocity = 360f;
     }
 
     void OnBecameInvisible()
@@ -47,6 +47,7 @@ public class Bullet : MonoBehaviour
 
     IEnumerator BulletDestroyAndEffect()
     {
+        speed = 0;
         GetComponent<PolygonCollider2D>().enabled = false;
 
         transform.DOScale(Vector2.zero, 0.5f);
