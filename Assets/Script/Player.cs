@@ -82,6 +82,7 @@ public class Player : MonoBehaviour
             return;
         }
 
+        // 적 탄
         if (collision.CompareTag("EBullet"))
         {
             playerManager.isDead = true;

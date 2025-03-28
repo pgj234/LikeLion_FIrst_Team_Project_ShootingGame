@@ -47,6 +47,11 @@ public class Bullet : MonoBehaviour
             StartCoroutine(BulletDestroyAndEffect());
         }
 
+        // 플레이어 증감 울타리
+        if (collision.CompareTag("PeopleUpFence"))
+        {
+            StartCoroutine(BulletDestroyAndEffect());
+        }
     }
 
     IEnumerator BulletDestroyAndEffect()
