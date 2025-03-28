@@ -2798,6 +2798,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519907178}
   m_CullTransparentMesh: 1
+--- !u!1 &1646960539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1646960541}
+  - component: {fileID: 1646960540}
+  m_Layer: 0
+  m_Name: Player_Layout
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1646960540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646960539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5eb266857bc884b9c83035d67ad9a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originalPlayer: {fileID: 2184632518947582072}
+  maxPlayerCount: 10
+  circleRadius: 0.5
+  speed: 5
+  attack: 1
+  weaponLevel: 1
+  monsterKillCount: 0
+--- !u!4 &1646960541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646960539}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -4.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4204810947377633321}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1704337554
 GameObject:
   m_ObjectHideFlags: 0
@@ -6932,7 +6984,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2184632518947582072}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -6949,7 +7001,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!1 &3583959331154902006
 GameObject:
@@ -7010,13 +7062,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2184632518947582072}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.25, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3356371884348762538}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1646960541}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &4280721140032150560
 Tilemap:
@@ -11239,14 +11291,7 @@ MonoBehaviour:
   - {fileID: 8410385761298972961, guid: 25633851dad889e40b5b295c14b3054e, type: 3}
   - {fileID: 2838656603351288438, guid: 8cb3293049dd5514bbc13b17131961c5, type: 3}
   - {fileID: 7272699981635540937, guid: 9d36737c0cc56dc47b571017f9198f13, type: 3}
-  speed: 5
-  attack: 2
-  weaponLevel: 0
-  attackSpeed: 1
   pos: {fileID: 3356371884348762538}
-  monsterKillCount: 0
-  isDead: 0
-  enableDebugLog: 1
 --- !u!114 &6837596948237782121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11938,7 +11983,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1256482825}
   - {fileID: 6200511178702439193}
-  - {fileID: 4204810947377633321}
+  - {fileID: 1646960541}
   - {fileID: 382538783}
   - {fileID: 1776189942213978458}
   - {fileID: 678254767}
