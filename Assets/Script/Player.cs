@@ -103,10 +103,13 @@ public class Player : MonoBehaviour
         {
             yield return wait;
 
-            GameObject go = Instantiate(bulletObjArray[playerManager.weaponLevel - 1], pos.position, Quaternion.identity);
-            Bullet bulletScript = go.GetComponent<Bullet>();
-            bulletScript.speed += (1 - attackSpeed) * 4;
-            bulletScript.attack = playerManager.attack;
+            if (false == UIManager.instance.ClearStageUiOpenStateGet())
+            {
+                GameObject go = Instantiate(bulletObjArray[playerManager.weaponLevel - 1], pos.position, Quaternion.identity);
+                Bullet bulletScript = go.GetComponent<Bullet>();
+                bulletScript.speed += (1 - attackSpeed) * 4;
+                bulletScript.attack = playerManager.attack;
+            }
         }
     }
 

@@ -61,4 +61,10 @@ public class UIManager : MonoBehaviour
             CloseUI(type);
         }
     }
+
+    // 클리어 UI창 떠있는지 여부 Get
+    public bool ClearStageUiOpenStateGet()
+    {
+        return ClearStageUI.activeSelf;
+    }
 }
