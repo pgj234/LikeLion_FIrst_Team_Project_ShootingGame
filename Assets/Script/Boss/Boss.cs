@@ -15,6 +15,8 @@ public class Boss : MonoBehaviour
     [SerializeField] private Slider bhpBar;
 
     private int BHP;
+    private int currentHP;
+
     private bool isPlayerAlive = true;
 
     //체력 절반 이하 체크
@@ -27,9 +29,8 @@ public class Boss : MonoBehaviour
 
     public int HP
     {
-        get => BHP;
-        //0���Ϸ� �������� ����
-        private set => BHP = Math.Clamp(value, 0, BHP);
+        get => currentHP;
+        private set => currentHP = Mathf.Clamp(value, 0, BHP);
     }
     private Vector3 startPosition; // 시작 위치 (화면 위쪽)
     private Vector3 targetPosition; // 목표 위치 (고정될 위치)
@@ -38,6 +39,7 @@ public class Boss : MonoBehaviour
     private void Awake()
     {
         BHP = 4000;
+        currentHP = BHP; // 초기 HP 설정
         SetMaxHP(BHP);
         // 화면의 위쪽 외부로 시작 위치 설정 (카메라의 orthographicSize 사용)
         float screenTop = Camera.main.orthographicSize + 2f; // 화면 위쪽 외부
