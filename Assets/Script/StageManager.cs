@@ -140,4 +140,16 @@ public class StageManager : MonoBehaviour
         if (spawnCount < 0) Debug.LogError($"curStage:{curStage},에 대한 PEOPLE_FENCE_COUNT 정의되어야합니다.");
         return spawnCount;
     }
+    public float GetMonsterSpeed()
+    {
+        float speed = curStage switch
+        {
+            1 => Constants.STAGE1_MONSTER_SPEED,
+            2 => Constants.STAGE2_MONSTER_SPEED,
+            3 => Constants.STAGE3_MONSTER_SPEED,
+            _ => -1,
+        };
+        if (speed < 0) Debug.LogError($"curStage:{curStage},에 대한 MONSTER_SPEED가 정의되어야합니다.");
+        return speed;
+    }
 }

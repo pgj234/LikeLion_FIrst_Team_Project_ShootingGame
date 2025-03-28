@@ -165,6 +165,13 @@ public class SpawnManager : MonoBehaviour
     {
         float randomX = UnityEngine.Random.Range(spawnMinX, spawnMaxX);
         GameObject go = Instantiate(enemies[enemyIndex], new Vector2(randomX, transform.position.y), Quaternion.identity);
+        float monsterSpeed = StageManager.instance.curStage switch
+        {
+            1 => Constants.STAGE1_MONSTER_SPEED,
+            2 => Constants.STAGE2_MONSTER_SPEED,
+            3 => Constants.STAGE3_MONSTER_SPEED,
+        };
+        go.GetComponent<Monster_1>().Init(monsterSpeed);
         monsters.Add(go);
         Destroy(go, 5f);
     }

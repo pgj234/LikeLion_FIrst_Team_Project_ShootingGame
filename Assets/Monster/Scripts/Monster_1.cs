@@ -9,7 +9,11 @@ public class Monster_1 : MonoBehaviour
 	//[SerializeField] float speedMin;       // 최소 속도 (사용하지 않음)
 	//[SerializeField] float speedMax;       // 최대 속도 (사용하지 않음)
 	//[SerializeField] float HP;             // 체력 (사용하지 않음)
-	[SerializeField] float currentSpeed;     // 현재 이동 속도
+	private float currentSpeed;     // 현재 이동 속도
+	public void Init(float speed)
+	{
+        currentSpeed = speed;
+    }
 
 	/// <summary>
 	/// 게임 시작 시 호출되는 메서드
