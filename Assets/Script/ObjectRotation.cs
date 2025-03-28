@@ -25,4 +25,9 @@ public class ObjectRotation : MonoBehaviour
             yield return wait;
         }
     }
+
+    void OnDestroy()
+    {
+        DOTween.Kill(transform);
+    }
 }

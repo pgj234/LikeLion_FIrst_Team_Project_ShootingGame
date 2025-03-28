@@ -23,6 +23,10 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    void OnDestroy()
+    {
+        DOTween.Kill(transform);
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
