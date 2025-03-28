@@ -128,6 +128,7 @@ public class Boss : MonoBehaviour
         transform.position = targetPosition;
         //등장 후 총알 발사
         hasReachedTarget = true;
+
         StartCoroutine(BossBullet());
         StartCoroutine(CircleFire());
     }
@@ -148,13 +149,13 @@ public class Boss : MonoBehaviour
             isPlayerAlive = false;
         }
         // 체력이 절반 이하가 되면 좌우 이동 + 탄속 증가
-        if (!isMovingSide && HP <= BHP / 2)
+        if (!isMovingSide && HP <= (BHP / 2))
         {
             isMovingSide = true;
             StartCoroutine(MoveSideToSide());
         }
 
-        if (!isFast && HP <= BHP / 2)
+        if (!isFast && HP <= (BHP / 2))
         {
             isFast = true;
             bulletSpeedMultiplier = 2f; // 탄막 속도 2배 증가
@@ -187,14 +188,17 @@ public class Boss : MonoBehaviour
     }
     private void OnBecameInvisible()
     {
-        Destroy(gameObject);
+        if (hasReachedTarget)
+        {
+            Destroy(gameObject);
+        }
+       
 
     }
 
     public void Damage(int ATK)
     {
-        int getDamage =  HP -= ATK;
-        HP = getDamage;
+        HP = Math.Clamp(HP - ATK, 0, BHP);
         bhpBar.value = HP;
         if(HP <= 0)
         {
