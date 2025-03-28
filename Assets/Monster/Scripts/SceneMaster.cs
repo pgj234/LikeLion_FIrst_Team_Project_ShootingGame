@@ -4,7 +4,21 @@ using UnityEngine.SceneManagement;
 
 public class SceneMaster : MonoBehaviour
 {
+	public static SceneMaster instance;
 
+
+	void Awake()
+	{
+		if (instance == null)
+		{
+			instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+	}
 
 	public void OnClickStart()
 	{
