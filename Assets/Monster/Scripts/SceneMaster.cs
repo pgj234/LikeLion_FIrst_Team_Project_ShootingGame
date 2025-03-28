@@ -11,6 +11,16 @@ public class SceneMaster : MonoBehaviour
 		SceneManager.LoadScene(1);
 	}
 
+	public void OnClickReStart()
+	{
+		SceneManager.LoadScene(1);
+	}
+
+	public void OnClickHome()
+	{
+		SceneManager.LoadScene(0);
+	}
+
 	public void OnClickOut()
 	{
 		// 게임 종료 버튼 클릭 시 애플리케이션 종료
