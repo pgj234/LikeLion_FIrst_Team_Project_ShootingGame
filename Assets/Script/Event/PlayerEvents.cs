@@ -9,6 +9,7 @@ public class PlayerEvents
     // 이벤트 선언
     public event Action onWeaponUpgrade;  // 무기 업그레이드 이벤트
     public event Action onPlayerDead;     // 플레이어 사망 이벤트
+    public event Action onBossDead;    // 보스 처치 이벤트
     public event Action onMonsterDead;    // 몬스터 처치 이벤트
     
     /// <summary>
@@ -28,7 +29,16 @@ public class PlayerEvents
     {
         onPlayerDead?.Invoke();  // 이벤트 리스너가 있으면 호출
     }
-    
+
+    /// <summary>
+    /// 보스 처치 이벤트를 발생시키는 메서드
+    /// 보스가 처치될 때 호출됩니다.
+    /// </summary>
+    public void BossDead()
+    {
+        onBossDead?.Invoke();  // 이벤트 리스너가 있으면 호출
+    }
+
     /// <summary>
     /// 몬스터 처치 이벤트를 발생시키는 메서드
     /// 몬스터가 처치될 때 호출됩니다.

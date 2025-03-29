@@ -202,24 +202,23 @@ public class Boss : MonoBehaviour
     {
         HP = Math.Clamp(HP - ATK, 0, BHP);
         bhpBar.value = HP;
-        if(HP <= 0)
+        if (HP <= 0)
         {
+            EventManager.instance.playerEvents.BossDead();
             StartCoroutine(DieAfterShake());
         }
-
     }
     private IEnumerator DieAfterShake()
     {
         GetComponent<Collider2D>().enabled = false; // 콜라이더 비활성화
 
         yield return StartCoroutine(CameraShake.instance.Shake(1f, 0.3f)); // 카메라 흔들림 완료 대기
+        Destroy(gameObject); // 흔들림이 끝난 후 보스 제거
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
 
         UIManager.instance.OpenUI(UIType.BossClear);
         SoundManager.instance.PlaySFX(Sound.Victory);
-
-        Destroy(gameObject); // 흔들림이 끝난 후 보스 제거
     }
 
 }

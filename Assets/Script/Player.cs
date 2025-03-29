@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
         EventManager.instance.playerEvents.onWeaponUpgrade += playerManager.ShootSpeedSet;
         EventManager.instance.playerEvents.onPlayerDead += GameOverUiOpen;
         EventManager.instance.playerEvents.onMonsterDead += playerManager.ChangeBullet;
+        EventManager.instance.playerEvents.onBossDead += PlayerColliderOff;
     }
 
     //void Update()
@@ -107,6 +108,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    void PlayerColliderOn()
+    {
+        GetComponent<CapsuleCollider2D>().enabled = true;
+    }
+
+    void PlayerColliderOff()
+    {
+        GetComponent<CapsuleCollider2D>().enabled = false;
+    }
+
     void PlayerDie()
     {
         playerManager.isDead = true;
@@ -122,6 +133,7 @@ public class Player : MonoBehaviour
         EventManager.instance.playerEvents.onWeaponUpgrade -= playerManager.ShootSpeedSet;
 
         EventManager.instance.playerEvents.onMonsterDead -= playerManager.ChangeBullet;
+        EventManager.instance.playerEvents.onBossDead -= PlayerColliderOff;
     }
 
     internal IEnumerator Shoot()

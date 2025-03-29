@@ -32,8 +32,6 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Boss"))
         {
-            collision.gameObject.GetComponent<Boss>().Damage(attack);
-
             StartCoroutine(BulletDestroyAndEffect());
         }
         
