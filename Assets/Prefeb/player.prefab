@@ -110,7 +110,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -568663543, guid: 9228913b7b66224448ff274e98075653, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -134,9 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075138bb572640740a62e818494406a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  attack: 0
-  bullet: {fileID: 2838656603351288438, guid: 8cb3293049dd5514bbc13b17131961c5, type: 3}
+  gameOverUIObj: {fileID: 0}
+  bulletObjArray: []
   pos: {fileID: 6660897528691266148}
 --- !u!70 &2929500461533099059
 CapsuleCollider2D:
