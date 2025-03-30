@@ -58,7 +58,7 @@ public class Monster_1 : MonoBehaviour
             Debug.Log("몬스터 처치됨: " + gameObject.name);
 			
 			// 이벤트 발생 전에 총알 제거
-			Destroy(collision.gameObject);
+			//Destroy(collision.gameObject);
 			
 			// 몬스터 처치 이벤트 발생
 			EventManager.instance.playerEvents.MonsterDead();
