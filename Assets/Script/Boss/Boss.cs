@@ -213,12 +213,14 @@ public class Boss : MonoBehaviour
         GetComponent<Collider2D>().enabled = false; // 콜라이더 비활성화
 
         yield return StartCoroutine(CameraShake.instance.Shake(1f, 0.3f)); // 카메라 흔들림 완료 대기
-        Destroy(gameObject); // 흔들림이 끝난 후 보스 제거
-
+        GetComponent<SpriteRenderer>().sprite = null;
+        
         yield return new WaitForSeconds(0.5f);
-
+        
         UIManager.instance.OpenUI(UIType.BossClear);
         SoundManager.instance.PlaySFX(Sound.Victory);
+        
+        Destroy(gameObject); // 흔들림이 끝난 후 보스 제거
     }
 
 }
