@@ -59,7 +59,7 @@ public class Bullet : MonoBehaviour
         SoundManager.instance.PlaySFX(Sound.PlayerBulletImpact);
 
         speed = 0;
-        GetComponent<PolygonCollider2D>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
 
         transform.DOScale(Vector2.zero, 0.5f);
         transform.DORotate(new Vector3(0, 0, 1500), 0.5f).SetRelative();
