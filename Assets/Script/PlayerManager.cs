@@ -124,17 +124,17 @@ public class PlayerManager : MonoBehaviour
         if (monsterKillCount == 1)
         {
             weaponLevel += 1;
-            attack = 6;
+            attack = 2;
         }
         else if (monsterKillCount == 2)
         {
             weaponLevel += 1;
-            attack = 24;
+            attack = 4;
         }
         else if (monsterKillCount == 3)
         {
             weaponLevel += 1;
-            attack = 125;
+            attack = 7;
         }
 
         //Debug.Log("몬스터 죽인횟수: " +monsterKillCount );
