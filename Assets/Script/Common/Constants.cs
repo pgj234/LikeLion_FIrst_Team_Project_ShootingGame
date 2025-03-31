@@ -18,7 +18,7 @@ public static class Constants
 	/// <summary>스테이지 1 클리어에 필요한 몬스터 처치 수</summary>
 	public static int STAGE1_NEED_KILL_COUNT = 10;
 
-	public static int STAGE1_PEOPLE_FENCE_INIT_VALUE = -6;//인구증가 초기값
+	public static int STAGE1_PEOPLE_FENCE_INIT_VALUE = -5;//인구증가 초기값
 	public static int STAGE1_PEOPLE_FENCE_COUNT = 3; //최대등장횟수
 
 
@@ -36,7 +36,7 @@ public static class Constants
 	/// <summary>스테이지 2 클리어에 필요한 몬스터 처치 수</summary>
 	public static int STAGE2_NEED_KILL_COUNT = 25;
 
-	public static int STAGE2_PEOPLE_FENCE_INIT_VALUE = -15; //인구증가 초기값
+	public static int STAGE2_PEOPLE_FENCE_INIT_VALUE = -13; //인구증가 초기값
 	public static int STAGE2_PEOPLE_FENCE_COUNT = 3; //최대등장횟수
 
 
