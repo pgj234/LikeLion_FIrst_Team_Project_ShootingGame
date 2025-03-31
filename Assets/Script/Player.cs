@@ -145,12 +145,15 @@ public class Player : MonoBehaviour
         {
             yield return wait;
 
-            if (false == UIManager.instance.UiOpenStateGet(UIType.ClearStage) || false == UIManager.instance.UiOpenStateGet(UIType.BossClear))
+            if (false == UIManager.instance.UiOpenStateGet(UIType.BossClear))
             {
-                GameObject go = Instantiate(bulletObjArray[playerManager.weaponLevel - 1], pos.position, Quaternion.identity);
-                Bullet bulletScript = go.GetComponent<Bullet>();
-                bulletScript.speed += (1 - attackSpeed) * 4;
-                bulletScript.attack = playerManager.attack;
+                if (false == UIManager.instance.UiOpenStateGet(UIType.ClearStage))
+                {
+                    GameObject go = Instantiate(bulletObjArray[playerManager.weaponLevel - 1], pos.position, Quaternion.identity);
+                    Bullet bulletScript = go.GetComponent<Bullet>();
+                    bulletScript.speed += (1 - attackSpeed) * 4;
+                    bulletScript.attack = playerManager.attack;
+                }
             }
         }
     }

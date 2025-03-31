@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviour
 
     [Space(10)]
     float managerAttackSpeed = 1;           // 공속
-    float managerShotBasicReduceSpeed = 0.2f;      // 기본적인 업글당 오르는 공속치 (임시 테스트 수치 기존:0.05)
+    float managerShotBasicReduceSpeed = 0.1f;      // 기본적인 업글당 오르는 공속치 [임시 테스트 수치 (기존:0.05)]
     float managerMaxShotSpeed = 0.15f;             // 공속 최대치
 
     //[Header("체력 바 설정")]
