@@ -121,17 +121,17 @@ public class PlayerManager : MonoBehaviour
     {
         monsterKillCount += 1;
 
-        if (monsterKillCount == 5)
+        if (monsterKillCount == 11)
         {
             weaponLevel += 1;
             attack = 2;
         }
-        else if (monsterKillCount == 10)
+        else if (monsterKillCount == 25)
         {
             weaponLevel += 1;
             attack = 4;
         }
-        else if (monsterKillCount == 20)
+        else if (monsterKillCount == 50)
         {
             weaponLevel += 1;
             attack = 7;

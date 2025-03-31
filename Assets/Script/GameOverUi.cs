@@ -17,5 +17,10 @@ public class GameOverUi : MonoBehaviour
             SceneMaster.instance.OnClickReStart();
             Time.timeScale = 1;
         }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Time.timeScale = 1;
+            SceneMaster.instance.OnClickHome();
+        }
     }
 }

@@ -2939,15 +2939,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Game Over
-
-
-
-
-    <color=white>Restart : R</color>'
+  m_text: "Game Over\n\n\n\n<color=white>\uC7AC\uC2DC\uC791 : R</color>\n<color=white>\uBA54\uC778\uC73C\uB85C
+    : Q</color>"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bcec88361480d8e478431378d3673ee6, type: 2}
+  m_sharedMaterial: {fileID: 6607701440576930439, guid: bcec88361480d8e478431378d3673ee6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2981,7 +2977,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 5
+  m_characterSpacing: 7
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

@@ -95,6 +95,12 @@ public class Player : MonoBehaviour
             PlayerDie();
         }
 
+        // 몬스터
+        if (collision.CompareTag("Monster"))
+        {
+            PlayerDie();
+        }
+
         // 플레이어 증감 울타리
         if (collision.CompareTag("PeopleUpFence"))
         {
