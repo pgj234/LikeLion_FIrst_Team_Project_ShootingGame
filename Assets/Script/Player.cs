@@ -122,9 +122,6 @@ public class Player : MonoBehaviour
     {
         playerManager.isDead = true;
 
-        SoundManager.instance.StopBGM();
-        SoundManager.instance.PlaySFX(Sound.GameOver);
-
         EventManager.instance.playerEvents.PlayerDead();
         EventManager.instance.playerEvents.onPlayerDead -= GameOverUiOpen;
 
@@ -142,7 +139,7 @@ public class Player : MonoBehaviour
         {
             yield return wait;
 
-            if (false == UIManager.instance.ClearStageUiOpenStateGet())
+            if (false == UIManager.instance.UiOpenStateGet(UIType.ClearStage) || false == UIManager.instance.UiOpenStateGet(UIType.BossClear))
             {
                 GameObject go = Instantiate(bulletObjArray[playerManager.weaponLevel - 1], pos.position, Quaternion.identity);
                 Bullet bulletScript = go.GetComponent<Bullet>();

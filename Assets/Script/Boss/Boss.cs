@@ -218,7 +218,6 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         
         UIManager.instance.OpenUI(UIType.BossClear);
-        SoundManager.instance.PlaySFX(Sound.Victory);
         
         Destroy(gameObject); // 흔들림이 끝난 후 보스 제거
     }

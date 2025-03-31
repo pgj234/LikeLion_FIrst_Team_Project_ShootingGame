@@ -71,9 +71,21 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // 클리어 UI창 떠있는지 여부 Get
-    public bool ClearStageUiOpenStateGet()
+    // UI창 떠있는지 여부 Get
+    public bool UiOpenStateGet(UIType type)
     {
-        return ClearStageUI.activeSelf;
+        switch (type)
+        {
+            case UIType.StartStage:
+                return StartStageUI.activeSelf;
+            case UIType.ClearStage:
+                return ClearStageUI.activeSelf;
+            case UIType.BossWarnning:
+                return BossWarnningUI.activeSelf;
+            case UIType.BossClear:
+                return BossClearUI.activeSelf;
+            default:
+                return false;
+        }
     }
 }

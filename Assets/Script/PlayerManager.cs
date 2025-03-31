@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -244,7 +245,7 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-        if (true == isDead || true == UIManager.instance.ClearStageUiOpenStateGet())
+        if (true == isDead || true == UIManager.instance.UiOpenStateGet(UIType.ClearStage) || true == UIManager.instance.UiOpenStateGet(UIType.BossClear))
         {
             return;
         }

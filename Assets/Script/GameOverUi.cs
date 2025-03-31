@@ -5,6 +5,8 @@ public class GameOverUi : MonoBehaviour
 {
     void OnEnable()
     {
+        SoundManager.instance.StopBGM();
+        SoundManager.instance.PlaySFX(Sound.GameOver);
         Time.timeScale = 0;
     }
 
